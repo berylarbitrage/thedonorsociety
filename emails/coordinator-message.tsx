@@ -28,7 +28,7 @@ export default function CoordinatorMessageEmail({
           Open My Applicant Portal
         </Button>
       )}
-      <Text style={{ fontSize: 13, color: "#6A5C77" }}>
+      <Text style={{ fontSize: 13, color: "#6B665E" }}>
         You can reply directly to this email, or call us at {SITE.contactPhone}.
       </Text>
     </EmailLayout>

@@ -38,13 +38,17 @@ export function ApplyMenu({ className }: { className?: string }) {
         aria-controls="apply-menu"
         onClick={() => setOpen((v) => !v)}
       >
-        Apply Now <ChevronDown className="size-4" aria-hidden />
+        Apply Now{" "}
+        <ChevronDown
+          className={`size-4 transition-transform ${open ? "rotate-180" : ""}`}
+          aria-hidden
+        />
       </Button>
       {open && (
         <div
           id="apply-menu"
           role="menu"
-          className="border-border bg-card absolute right-0 z-50 mt-2 w-60 overflow-hidden rounded-xl border shadow-xl"
+          className="border-ink bg-card absolute right-0 z-50 mt-2 w-64 border shadow-[0_18px_40px_-20px_rgba(18,18,18,0.35)]"
         >
           {APPLY_OPTIONS.map((o) => (
             <Link
@@ -52,10 +56,10 @@ export function ApplyMenu({ className }: { className?: string }) {
               href={o.href}
               role="menuitem"
               onClick={() => setOpen(false)}
-              className="hover:bg-muted-bg block px-4 py-3"
+              className="hover:bg-muted-bg focus-visible:bg-muted-bg border-border block border-b px-5 py-4 last:border-b-0"
             >
-              <span className="block text-sm font-semibold">{o.label}</span>
-              <span className="text-muted block text-xs">{o.note}</span>
+              <span className="block font-serif text-lg leading-tight">{o.label}</span>
+              <span className="text-muted mt-1 block text-xs tracking-wide">{o.note}</span>
             </Link>
           ))}
         </div>

@@ -25,13 +25,15 @@ export default async function ApplyPage({ params }: { params: Promise<{ type: st
   const { type } = await params;
   if (!isDonorType(type)) notFound();
   return (
-    <div className="mx-auto max-w-2xl px-4 py-10 md:py-14">
-      <p className="text-primary text-sm font-semibold">
-        {type === "egg" ? "Egg donor" : "Sperm donor"} application
-      </p>
-      <h1 className="mt-1 mb-6 text-3xl font-semibold md:text-4xl">
-        Let&apos;s see if you pre-qualify
-      </h1>
+    <div className="mx-auto max-w-2xl px-4 py-12 md:py-20">
+      <header className="mb-10 text-center">
+        <p className="label-caps rule-ornament text-accent">
+          {type === "egg" ? "Egg donor" : "Sperm donor"} application
+        </p>
+        <h1 className="mt-5 text-[2.2rem] leading-tight md:text-5xl">
+          Let&apos;s see if you pre-qualify
+        </h1>
+      </header>
       <PrescreenForm type={type} turnstileSiteKey={turnstileSiteKey()} />
     </div>
   );

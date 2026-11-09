@@ -4,24 +4,26 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-none font-sans font-medium uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-3 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        // CTA — accent color per design spec
-        default:
-          "bg-brand text-accent-foreground shadow-lg shadow-accent/25 hover:brightness-110 hover:shadow-accent/35",
-        primary: "bg-primary text-primary-foreground hover:brightness-110",
-        outline:
-          "border-2 border-primary/30 text-primary bg-card/60 backdrop-blur hover:border-primary hover:bg-primary-soft",
-        ghost: "hover:bg-muted-bg text-foreground",
+        // CTA — ink with ivory text
+        default: "bg-ink text-ivory border border-ink hover:bg-[#2b2a27] hover:border-[#2b2a27]",
+        primary: "bg-ink text-ivory border border-ink hover:bg-[#2b2a27]",
+        outline: "border border-ink text-ink bg-transparent hover:bg-ink hover:text-ivory",
+        // For use on black bands
+        ivory: "bg-ivory text-ink border border-ivory hover:bg-transparent hover:text-ivory",
+        "outline-ivory":
+          "border border-ivory/70 text-ivory bg-transparent hover:bg-ivory hover:text-ink hover:border-ivory",
+        ghost: "hover:bg-muted-bg text-foreground tracking-normal normal-case",
         destructive: "bg-destructive text-white hover:brightness-110",
-        link: "text-primary underline-offset-4 hover:underline rounded-none",
+        link: "text-primary underline underline-offset-4 decoration-gold hover:decoration-ink",
       },
       size: {
-        default: "h-11 px-6 text-sm",
-        sm: "h-9 px-4 text-sm",
-        lg: "h-13 px-8 text-base",
+        default: "h-11 px-6 text-[0.72rem]",
+        sm: "h-9 px-4 text-[0.68rem]",
+        lg: "h-13 px-9 text-[0.75rem]",
         icon: "size-10",
       },
     },

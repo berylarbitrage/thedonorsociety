@@ -2,49 +2,50 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Brand tokens from the Good Beginnings Club logo. The site is always light,
-   regardless of the visitor's system dark-mode setting. (A .dark class is
-   kept below for possible future use but is never applied.)
-   plum #3C1860 (wordmark) · lavender #C09CD8 · peach #FCC0B4 · blush #FCD8D8 */
+/* The Donor Society — editorial monochrome.
+   ivory #FAF8F3 · ink #121212 · antique gold #A8834A (rules & details only)
+   gold text #7A5C2E (AA on ivory) · gold-light #C4A46E (AA on ink)
+   stone #6B665E · parchment #F1EDE4
+   The site is always light; the .dark class is kept for possible future use. */
 :root {
   color-scheme: light;
-  --primary: #4a2172; /* plum — headings, brand, links */
-  --primary-foreground: #ffffff;
-  --accent: #7b4bb3; /* violet — CTA buttons (white text, AA contrast) */
-  --accent-foreground: #ffffff;
-  --background: #fdf8fb;
-  --foreground: #2a1a38;
-  --muted: #6a5c77;
-  --muted-bg: #f6eef7;
-  --card: #ffffff;
-  --border: #eadff0;
-  --ring: #7b4bb3;
-  --destructive: #b42318;
-  --primary-soft: #f0e7fa; /* lavender wash */
-  --accent-soft: #fdebe6; /* peach wash */
-  --lavender: #c09cd8;
-  --peach: #fcc0b4;
-  --blush: #fcd8d8;
+  --primary: #121212; /* ink — headings, CTA buttons, links */
+  --primary-foreground: #faf8f3;
+  --accent: #7a5c2e; /* dark antique gold — small labels / numerals as text */
+  --accent-foreground: #faf8f3;
+  --background: #faf8f3; /* ivory */
+  --foreground: #121212;
+  --muted: #6b665e; /* warm stone */
+  --muted-bg: #f1ede4; /* parchment panel */
+  --card: #fdfcf9;
+  --border: #ddd6c8; /* hairline */
+  --ring: #7a5c2e;
+  --destructive: #a1271b;
+  --primary-soft: #ebe5d8;
+  --accent-soft: #f4eee2;
+  --gold: #a8834a; /* decorative only: rules, crest, large numerals */
+  --gold-light: #c4a46e; /* text on ink */
+  --ink: #121212;
+  --ivory: #faf8f3;
+  --ink-muted: #b5aea2; /* secondary text on ink */
+  --ink-line: #3a3833; /* hairlines on ink */
 }
 
 .dark {
-  --primary: #d9c2f2;
-  --primary-foreground: #241035;
-  --accent: #b28be0;
-  --accent-foreground: #1d0c2c;
-  --background: #160f1d;
-  --foreground: #f3eef7;
-  --muted: #b6a9c2;
-  --muted-bg: #21172b;
-  --card: #1d1426;
-  --border: #352743;
-  --ring: #b28be0;
+  --primary: #faf8f3;
+  --primary-foreground: #121212;
+  --accent: #c4a46e;
+  --accent-foreground: #121212;
+  --background: #121212;
+  --foreground: #faf8f3;
+  --muted: #b5aea2;
+  --muted-bg: #1c1b19;
+  --card: #181715;
+  --border: #3a3833;
+  --ring: #c4a46e;
   --destructive: #f97066;
-  --primary-soft: #2a1c3a;
-  --accent-soft: #3a2228;
-  --lavender: #8d6bb0;
-  --peach: #d98f80;
-  --blush: #b98a92;
+  --primary-soft: #23211e;
+  --accent-soft: #2a261f;
 }
 
 @theme inline {
@@ -62,11 +63,26 @@
   --color-destructive: var(--destructive);
   --color-primary-soft: var(--primary-soft);
   --color-accent-soft: var(--accent-soft);
-  --color-lavender: var(--lavender);
-  --color-peach: var(--peach);
-  --color-blush: var(--blush);
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-ink: var(--ink);
+  --color-ivory: var(--ivory);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-line: var(--ink-line);
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bodoni), "Didot", "Bodoni 72", ui-serif, Georgia, serif;
+}
+
+/* Square corners everywhere. */
+@theme {
+  --radius-xs: 0;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+  --radius-4xl: 0;
 }
 
 @layer base {
@@ -85,16 +101,24 @@
   h2,
   h3 {
     font-family: var(--font-serif);
-    letter-spacing: -0.01em;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--ivory);
   }
   :focus-visible {
     outline: 2px solid var(--ring);
-    outline-offset: 2px;
+    outline-offset: 3px;
+  }
+  .on-ink :focus-visible {
+    outline-color: var(--gold-light);
   }
 }
 
 .prose-legal h2 {
-  @apply mt-8 mb-3 text-xl font-semibold;
+  @apply mt-10 mb-3 text-2xl;
 }
 .prose-legal p,
 .prose-legal li {
@@ -104,55 +128,39 @@
   @apply list-disc pl-6;
 }
 
-/* ---- Brand flourishes ---------------------------------------------------- */
+/* ---- Editorial details --------------------------------------------------- */
 
-/* Primary CTA: violet → plum gradient. */
-.bg-brand {
-  background-image: linear-gradient(135deg, var(--accent) 0%, var(--primary) 100%);
-}
-
-/* Hero / section wash: soft lavender + peach glows, like the logo. */
-.bg-glow {
-  background:
-    radial-gradient(
-      45rem 30rem at 85% 10%,
-      color-mix(in oklab, var(--lavender) 35%, transparent),
-      transparent 70%
-    ),
-    radial-gradient(
-      40rem 28rem at 10% 90%,
-      color-mix(in oklab, var(--peach) 35%, transparent),
-      transparent 70%
-    ),
-    var(--background);
+/* Spaced uppercase label. */
+.label-caps {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
-/* Gradient text for emphasised words in headlines. */
-.text-brand-gradient {
-  background-image: linear-gradient(100deg, var(--accent) 10%, #c06c9a 55%, #e8907c 95%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Centered ornament rule: ——— ◆ ——— */
+.rule-ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+}
+.rule-ornament::before,
+.rule-ornament::after {
+  content: "";
+  height: 1px;
+  width: 3.5rem;
+  background: var(--gold);
 }
 
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, -10px, 0);
-  }
-}
-.animate-float {
-  animation: float-slow 7s ease-in-out infinite;
-}
-.animate-float-delayed {
-  animation: float-slow 8s ease-in-out -3s infinite;
-}
 @media (prefers-reduced-motion: reduce) {
-  .animate-float,
-  .animate-float-delayed {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

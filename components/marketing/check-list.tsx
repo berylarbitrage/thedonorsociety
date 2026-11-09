@@ -1,12 +1,10 @@
-import { Check } from "lucide-react";
-
 export function CheckList({ items }: { items: readonly string[] }) {
   return (
-    <ul className="grid gap-3 sm:grid-cols-2">
+    <ul className="border-border grid border-t sm:grid-cols-2 sm:gap-x-12">
       {items.map((item) => (
-        <li key={item} className="bg-card flex items-start gap-3 rounded-xl p-4 shadow-sm">
-          <span className="bg-primary-soft text-primary mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full">
-            <Check className="size-4" aria-hidden />
+        <li key={item} className="border-border flex items-baseline gap-4 border-b py-4">
+          <span className="text-gold shrink-0 text-[0.6rem]" aria-hidden>
+            ◆
           </span>
           <span>{item}</span>
         </li>

@@ -1,23 +1,25 @@
 import type { FaqItem } from "@/content/faq";
-import { ChevronDown } from "lucide-react";
 
 /** Accessible accordion built on <details>, works without JS. */
 export function FaqList({ items }: { items: FaqItem[] }) {
   return (
-    <div className="divide-border border-border bg-card divide-y rounded-2xl border">
+    <div className="border-ink divide-border border-t border-b">
       {items.map((item) => (
         <details
           key={item.q}
-          className="group px-5 py-4 [&_summary::-webkit-details-marker]:hidden"
+          className="group border-border border-b last:border-b-0 [&_summary::-webkit-details-marker]:hidden"
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 font-serif text-lg leading-snug md:text-xl">
             <span>{item.q}</span>
-            <ChevronDown
+            <span
               aria-hidden
-              className="text-primary size-5 shrink-0 transition-transform group-open:rotate-180"
-            />
+              className="text-accent mt-0.5 w-4 shrink-0 text-center font-sans text-xl leading-none font-light"
+            >
+              <span className="group-open:hidden">+</span>
+              <span className="hidden group-open:inline">−</span>
+            </span>
           </summary>
-          <p className="text-muted mt-3">{item.a}</p>
+          <p className="text-muted max-w-3xl pr-10 pb-6 leading-relaxed">{item.a}</p>
         </details>
       ))}
     </div>

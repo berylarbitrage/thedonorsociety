@@ -1,46 +1,45 @@
-import { useId } from "react";
-
 /**
- * Good Beginnings Club mark: overlapping lavender and peach circles with a
- * sperm cell swimming into the overlap. Pure SVG so it stays crisp anywhere.
+ * The Donor Society crest: a "DS" Didone monogram inside a fine double ring,
+ * marked at the four cardinal points. Letters use currentColor; the rings use
+ * the antique-gold token. Pure SVG so it stays crisp anywhere.
  */
 export function LogoMark({ className, title }: { className?: string; title?: string }) {
-  const id = useId().replace(/:/g, "");
+  const ticks = [0, 90, 180, 270];
   return (
     <svg
-      viewBox="0 0 120 100"
+      viewBox="0 0 100 100"
       className={className}
       role={title ? "img" : undefined}
       aria-hidden={title ? undefined : true}
     >
       {title && <title>{title}</title>}
-      <defs>
-        <radialGradient id={`lav-${id}`} cx="35%" cy="35%" r="75%">
-          <stop offset="0%" stopColor="#E4D0F5" />
-          <stop offset="55%" stopColor="#B892DD" />
-          <stop offset="100%" stopColor="#8A5FC0" />
-        </radialGradient>
-        <radialGradient id={`pch-${id}`} cx="60%" cy="35%" r="75%">
-          <stop offset="0%" stopColor="#FFE9E4" />
-          <stop offset="60%" stopColor="#FBC3B4" />
-          <stop offset="100%" stopColor="#F2A0A8" />
-        </radialGradient>
-      </defs>
-      {/* peach "heart-like" circle behind */}
-      <circle cx="72" cy="44" r="38" fill={`url(#pch-${id})`} opacity="0.95" />
-      <circle cx="78" cy="58" r="22" fill="#FFF3F0" opacity="0.45" />
-      {/* lavender circle in front */}
-      <circle cx="46" cy="54" r="38" fill={`url(#lav-${id})`} opacity="0.92" />
-      {/* sperm cell */}
-      <path
-        d="M30 74 C 40 72, 44 64, 52 62 S 62 58, 64 50"
-        fill="none"
-        stroke="#FFFFFF"
-        strokeWidth="2.4"
-        strokeLinecap="round"
-        opacity="0.95"
-      />
-      <ellipse cx="67.5" cy="45" rx="5.2" ry="7" transform="rotate(35 67.5 45)" fill="#FFFFFF" />
+      <g fill="none" stroke="var(--gold)">
+        <circle cx="50" cy="50" r="47" strokeWidth="1.25" />
+        <circle cx="50" cy="50" r="42.5" strokeWidth="0.5" />
+      </g>
+      {ticks.map((deg) => (
+        <rect
+          key={deg}
+          x="48.4"
+          y="1.4"
+          width="3.2"
+          height="3.2"
+          fill="var(--gold)"
+          transform={`rotate(${deg} 50 50) rotate(45 50 3)`}
+        />
+      ))}
+      <text
+        x="50"
+        y="60.5"
+        textAnchor="middle"
+        fill="currentColor"
+        className="font-serif"
+        style={{ fontSize: 31, letterSpacing: "-0.04em" }}
+      >
+        DS
+      </text>
+      <line x1="38" y1="70" x2="62" y2="70" stroke="var(--gold)" strokeWidth="0.6" />
+      <line x1="38" y1="30" x2="62" y2="30" stroke="var(--gold)" strokeWidth="0.6" />
     </svg>
   );
 }

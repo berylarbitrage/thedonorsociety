@@ -35,7 +35,7 @@ export default function EligibleEmail({
       <Button href={portalUrl} style={button}>
         Continue My Application
       </Button>
-      <Text style={{ fontSize: 13, color: "#6A5C77" }}>
+      <Text style={{ fontSize: 13, color: "#6B665E" }}>
         This sign-in link expires soon and can only be used once. If it has expired, request a new
         one at {SITE.domain}/portal.
       </Text>

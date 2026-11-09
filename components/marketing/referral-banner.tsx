@@ -1,30 +1,29 @@
 import Link from "next/link";
-import { Gift } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SITE } from "@/config/site";
 
 export function ReferralBanner() {
   return (
-    <section className="mx-auto max-w-6xl px-4 py-10">
-      <div className="border-border from-accent-soft via-card to-primary-soft relative flex flex-col items-start gap-6 overflow-hidden rounded-3xl border bg-gradient-to-br p-8 shadow-sm md:flex-row md:items-center md:justify-between md:p-12">
-        <div className="flex items-start gap-4">
-          <span className="bg-brand text-accent-foreground flex size-12 shrink-0 items-center justify-center rounded-2xl shadow-lg">
-            <Gift className="size-6" aria-hidden />
-          </span>
-          <div>
-            <h2 className="text-primary text-2xl font-medium md:text-4xl">
-              Refer a friend, earn {SITE.referralBonus}
-            </h2>
-            <p className="text-muted mt-2">
-              Know someone who&apos;d be a great donor? Share your link and earn a bonus when they
-              complete a donation.
-            </p>
-          </div>
+    <section className="mx-auto max-w-5xl px-4 py-16 md:py-24">
+      <div className="border-ink relative border p-2">
+        <div className="border-gold border px-6 py-12 text-center md:px-16 md:py-16">
+          <p className="label-caps rule-ornament text-accent">Invite a friend</p>
+          <h2 className="text-primary mx-auto mt-6 max-w-2xl text-3xl leading-tight md:text-5xl">
+            Extend the invitation, receive <Em>{SITE.referralBonus}</Em>
+          </h2>
+          <p className="text-muted mx-auto mt-5 max-w-xl leading-relaxed">
+            Know someone who would make a wonderful donor? Share your personal link. You receive a
+            thank-you bonus once they complete a donation.
+          </p>
+          <Button asChild size="lg" className="mt-9">
+            <Link href="/refer">Get My Referral Link</Link>
+          </Button>
         </div>
-        <Button asChild size="lg">
-          <Link href="/refer">Get My Referral Link</Link>
-        </Button>
       </div>
     </section>
   );
+}
+
+function Em({ children }: { children: React.ReactNode }) {
+  return <em className="italic">{children}</em>;
 }

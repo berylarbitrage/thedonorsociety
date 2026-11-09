@@ -22,7 +22,7 @@ export default function InviteEmail({
       <Button href={url} style={button}>
         Sign In
       </Button>
-      <Text style={{ fontSize: 13, color: "#6A5C77" }}>
+      <Text style={{ fontSize: 13, color: "#6B665E" }}>
         Next time, sign in at {loginUrl} with this email address and we&apos;ll send you a new link.
       </Text>
     </EmailLayout>

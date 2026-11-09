@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
-import { NAV_LINKS } from "@/config/site";
+import { NAV_LINKS, SITE } from "@/config/site";
 import { ApplyMenu } from "@/components/layout/apply-menu";
 import { cn } from "@/lib/utils";
 
@@ -15,24 +15,11 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="border-border bg-background/90 sticky top-0 z-40 border-b backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
-        <Logo />
-        <nav aria-label="Main" className="hidden items-center gap-4 lg:flex xl:gap-6">
-          {NAV_LINKS.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className={cn(
-                "text-foreground/80 hover:text-primary text-sm font-medium whitespace-nowrap",
-                pathname === l.href && "text-primary",
-              )}
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2">
+    <header className="border-border bg-background/95 sticky top-0 z-40 border-b backdrop-blur-sm">
+      <div className="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto] items-center gap-4 px-4 lg:h-[4.5rem] lg:grid-cols-[1fr_auto_1fr]">
+        <p className="text-muted hidden font-serif text-sm italic lg:block">{SITE.subtitle}</p>
+        <Logo showSubtitle={false} className="lg:justify-self-center" />
+        <div className="flex items-center justify-end gap-2">
           <ApplyMenu className="hidden sm:block" />
           <Button
             variant="ghost"
@@ -47,34 +34,53 @@ export function Header() {
           </Button>
         </div>
       </div>
+      <nav aria-label="Main" className="border-border hidden border-t lg:block">
+        <ul className="mx-auto flex h-11 max-w-6xl items-center justify-center gap-10 px-4">
+          {NAV_LINKS.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                aria-current={pathname === l.href ? "page" : undefined}
+                className={cn(
+                  "label-caps text-foreground/80 hover:text-foreground hover:border-gold border-b border-transparent py-1 whitespace-nowrap transition-colors",
+                  pathname === l.href && "text-foreground border-gold",
+                )}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
       {open && (
         <nav
           id="mobile-nav"
           aria-label="Mobile"
-          className="border-border bg-background border-t px-4 pb-4 lg:hidden"
+          className="border-border bg-background border-t px-4 pb-6 lg:hidden"
         >
           <ul className="flex flex-col">
             {NAV_LINKS.map((l) => (
-              <li key={l.href}>
+              <li key={l.href} className="border-border border-b">
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block py-3 text-base font-medium"
+                  aria-current={pathname === l.href ? "page" : undefined}
+                  className="block py-4 font-serif text-xl"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
-          <div className="mt-2 grid grid-cols-2 gap-2">
-            <Button asChild>
+          <div className="mt-5 grid grid-cols-2 gap-2">
+            <Button asChild className="px-2">
               <Link href="/apply/egg" onClick={() => setOpen(false)}>
-                Apply: Egg donor
+                Egg donor
               </Link>
             </Button>
-            <Button asChild>
+            <Button asChild className="px-2">
               <Link href="/apply/sperm" onClick={() => setOpen(false)}>
-                Apply: Sperm donor
+                Sperm donor
               </Link>
             </Button>
           </div>

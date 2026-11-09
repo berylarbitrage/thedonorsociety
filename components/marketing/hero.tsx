@@ -16,29 +16,26 @@ export function Hero({
   footnote?: React.ReactNode;
 }) {
   return (
-    <section className="bg-glow relative overflow-hidden">
-      <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 pt-10 pb-14 md:grid-cols-2 md:pt-20 md:pb-24">
-        <div>
-          {eyebrow && (
-            <p className="border-border bg-card/70 text-primary mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold tracking-[0.18em] uppercase backdrop-blur">
-              <span className="bg-brand size-1.5 rounded-full" />
-              {eyebrow}
-            </p>
-          )}
-          <h1 className="text-primary text-[2.6rem] leading-[1.05] font-medium tracking-tight md:text-6xl lg:text-7xl">
-            {title}
-          </h1>
-          <p className="text-muted mt-6 max-w-xl text-lg md:text-xl">{subtitle}</p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">{children}</div>
-          {footnote && <div className="mt-8">{footnote}</div>}
+    <section className="border-border relative border-b">
+      <div className="mx-auto max-w-4xl px-4 pt-14 pb-16 text-center md:pt-20 md:pb-24">
+        <HeroArt variant={art} className="text-ink mx-auto size-32 md:size-40" />
+        {eyebrow && <p className="label-caps rule-ornament text-accent mt-10">{eyebrow}</p>}
+        <h1 className="text-primary mx-auto mt-6 max-w-3xl text-[2.6rem] leading-[1.04] md:text-7xl">
+          {title}
+        </h1>
+        <p className="text-muted mx-auto mt-7 max-w-xl text-lg leading-relaxed md:text-xl">
+          {subtitle}
+        </p>
+        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+          {children}
         </div>
-        <HeroArt variant={art} />
+        {footnote && <div className="mt-12">{footnote}</div>}
       </div>
     </section>
   );
 }
 
-/** Italic gradient emphasis for a word or phrase inside a headline. */
+/** Italic Didone emphasis for a word or phrase inside a headline. */
 export function Em({ children }: { children: React.ReactNode }) {
-  return <em className="text-brand-gradient font-serif italic">{children}</em>;
+  return <em className="font-serif italic">{children}</em>;
 }

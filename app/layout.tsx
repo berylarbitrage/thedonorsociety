@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Bodoni_Moda, Jost } from "next/font/google";
 import "./globals.css";
 import { SITE, siteUrl } from "@/config/site";
 import { CookieBanner } from "@/components/analytics/cookie-banner";
 import { Analytics } from "@/components/analytics/analytics";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
-const fraunces = Fraunces({
+const jost = Jost({ subsets: ["latin"], variable: "--font-jost", display: "swap" });
+const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  axes: ["opsz"],
+  variable: "--font-bodoni",
   display: "swap",
 });
 
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.brand}`,
   },
   description:
-    "Become an egg or sperm donor and get matched with a family. Compensation for your time, medical costs covered, a dedicated coordinator — U.S. and international donors welcome.",
+    "An invitation to become an egg or sperm donor and help a family begin. Compensation for your time, medical costs covered, a dedicated coordinator — U.S. and international donors welcome.",
   openGraph: {
     type: "website",
     siteName: SITE.brand,
@@ -30,13 +31,13 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FDF8FB",
+  themeColor: "#FAF8F3",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${jost.variable} ${bodoni.variable}`}>
       <body className="min-h-dvh font-sans antialiased">
         {children}
         <CookieBanner />

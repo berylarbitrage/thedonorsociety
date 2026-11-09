@@ -5,6 +5,7 @@ export function Section({
   eyebrow,
   title,
   intro,
+  align = "center",
   className,
   children,
 }: {
@@ -12,26 +13,33 @@ export function Section({
   eyebrow?: string;
   title?: React.ReactNode;
   intro?: React.ReactNode;
+  align?: "center" | "left";
   className?: string;
   children: React.ReactNode;
 }) {
+  const centered = align === "center";
   return (
-    <section id={id} className={cn("mx-auto max-w-6xl px-4 py-14 md:py-20", className)}>
+    <section id={id} className={cn("mx-auto max-w-6xl px-4 py-16 md:py-24", className)}>
       {(eyebrow || title || intro) && (
-        <div className="mb-10 max-w-2xl">
+        <header
+          className={cn("mb-12 md:mb-16", centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl")}
+        >
           {eyebrow && (
-            <p className="text-accent mb-3 flex items-center gap-3 text-xs font-semibold tracking-[0.22em] uppercase">
-              <span className="bg-brand h-px w-8" aria-hidden />
-              {eyebrow}
+            <p
+              className={cn(
+                "label-caps text-accent mb-5",
+                centered ? "rule-ornament" : "flex items-center gap-3",
+              )}
+            >
+              {!centered && <span className="bg-gold h-px w-10" aria-hidden />}
+              <span className="text-accent">{eyebrow}</span>
             </p>
           )}
           {title && (
-            <h2 className="text-primary text-3xl leading-tight font-medium tracking-tight md:text-5xl">
-              {title}
-            </h2>
+            <h2 className="text-primary text-[2.1rem] leading-[1.1] md:text-5xl">{title}</h2>
           )}
-          {intro && <div className="text-muted mt-4 text-lg">{intro}</div>}
-        </div>
+          {intro && <div className="text-muted mt-5 text-lg leading-relaxed">{intro}</div>}
+        </header>
       )}
       {children}
     </section>

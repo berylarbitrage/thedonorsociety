@@ -18,7 +18,7 @@ export default function EggDonorPage() {
           eyebrow: "Egg donation",
           title: (
             <>
-              Become an egg donor. Give the <Em>gift of family.</Em>
+              Become an egg donor. <Em>Help a family begin.</Em>
             </>
           ),
           subtitle: `Compensation: ${SITE.eggComp}. Help someone build their family — with a dedicated coordinator by your side.`,

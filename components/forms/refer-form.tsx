@@ -62,7 +62,7 @@ export function ReferForm() {
 
   if (links) {
     return (
-      <div className="bg-card space-y-5 rounded-2xl p-6 shadow-sm" role="status">
+      <div className="border-border bg-card space-y-5 border p-6 md:p-8" role="status">
         <p className="text-lg font-semibold">Your referral links are ready!</p>
         <p className="text-muted text-sm">
           Share the link that fits your friend. We&apos;ll remember the referral for 30 days after
@@ -78,7 +78,7 @@ export function ReferForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="bg-card relative space-y-5 rounded-2xl p-6 shadow-sm"
+      className="border-border bg-card relative space-y-5 border p-6 md:p-8"
     >
       <Honeypot {...register("website")} />
       <Field id="name" label="Your name" required error={errors.name?.message}>

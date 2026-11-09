@@ -8,7 +8,6 @@ import { StickyCta } from "@/components/marketing/sticky-cta";
 import { Disclaimer } from "@/components/marketing/disclaimer";
 import { JsonLd } from "@/components/marketing/jsonld";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { requirementsList, type DonorType } from "@/config/eligibility";
 import { FAQ } from "@/content/faq";
 import { faqJsonLd } from "@/lib/seo";
@@ -38,49 +37,54 @@ export function DonorLanding({ c }: { c: DonorLandingContent }) {
       </Hero>
 
       {c.partnerNote && (
-        <div className="mx-auto max-w-6xl px-4">
-          <p className="bg-primary-soft rounded-xl p-4 text-sm">{c.partnerNote}</p>
+        <div className="mx-auto max-w-3xl px-4 pt-12">
+          <p className="border-gold text-foreground border-l py-1 pl-5 text-sm leading-relaxed">
+            {c.partnerNote}
+          </p>
         </div>
       )}
 
-      <Section id="requirements" eyebrow="Requirements" title="Who can apply">
-        <CheckList items={requirementsList(c.type)} />
-        <p className="text-muted mt-4 text-sm">
-          These are initial guidelines. Final eligibility is determined by our partner medical
-          providers.
-        </p>
+      <Section id="requirements" eyebrow="Requirements" title="Who may apply">
+        <div className="mx-auto max-w-4xl">
+          <CheckList items={requirementsList(c.type)} />
+          <p className="text-muted mt-6 text-center text-sm">
+            These are initial guidelines. Final eligibility is determined by our partner medical
+            providers.
+          </p>
+        </div>
       </Section>
 
-      <div className="bg-muted-bg">
-        <Section eyebrow="Compensation" title="Compensation & covered costs">
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card>
-              <p className="text-primary text-sm font-semibold">Compensation</p>
-              <p className="mt-2 font-serif text-3xl font-semibold">{c.comp.amount}</p>
-              <p className="text-muted mt-3 text-sm">
-                {c.comp.note ??
-                  "Paid for your time, effort, and commitment. Amounts vary by program."}
-              </p>
-            </Card>
-            <Card>
-              <p className="text-primary text-sm font-semibold">Covered at no cost to you</p>
-              <ul className="mt-3 space-y-2">
-                {c.comp.covered.map((x) => (
-                  <li key={x} className="flex gap-2">
-                    <span aria-hidden className="text-accent">
-                      ●
-                    </span>
-                    {x}
-                  </li>
-                ))}
-              </ul>
-            </Card>
+      <section className="on-ink bg-ink text-ivory">
+        <div className="mx-auto max-w-4xl px-4 py-20 md:py-28">
+          <p className="label-caps rule-ornament text-gold-light text-center">Compensation</p>
+          <h2 className="mt-6 text-center text-[2.1rem] leading-tight md:text-5xl">
+            Compensation &amp; covered costs
+          </h2>
+          <div className="border-ink-line mt-12 border-y py-10 text-center">
+            <p className="label-caps text-ink-muted">Compensation</p>
+            <p className="mt-4 font-serif text-3xl leading-snug md:text-5xl">{c.comp.amount}</p>
+            <p className="text-ink-muted mx-auto mt-5 max-w-lg text-sm leading-relaxed">
+              {c.comp.note ??
+                "Paid for your time, effort, and commitment. Amounts vary by program."}
+            </p>
           </div>
-        </Section>
-      </div>
+          <p className="label-caps text-gold-light mt-12 text-center">Covered at no cost to you</p>
+          <ul className="mt-6">
+            {c.comp.covered.map((x) => (
+              <li
+                key={x}
+                className="border-ink-line flex items-baseline justify-between gap-6 border-b py-4"
+              >
+                <span>{x}</span>
+                <span className="label-caps text-gold-light shrink-0">Included</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       <Section eyebrow="The process" title="What to expect, step by step">
-        <div className="max-w-2xl">
+        <div className="mx-auto max-w-3xl">
           <Timeline steps={c.steps} />
         </div>
       </Section>
@@ -91,25 +95,31 @@ export function DonorLanding({ c }: { c: DonorLandingContent }) {
           title="Things you might be wondering about"
           intro="We want you to make an informed decision. These are general answers — please talk with a physician about your personal health."
         >
-          <div className="grid gap-6 md:grid-cols-2">
-            {c.concerns.map((x) => (
-              <Card key={x.title}>
-                <h3 className="font-sans text-lg font-semibold">{x.title}</h3>
-                <p className="text-muted mt-2">{x.body}</p>
-              </Card>
+          <div className="border-border grid border-t md:grid-cols-2">
+            {c.concerns.map((x, i) => (
+              <div
+                key={x.title}
+                className={`border-border border-b py-8 md:px-10 ${i % 2 === 0 ? "md:border-r md:pl-0" : "md:pr-0"}`}
+              >
+                <h3 className="text-2xl">{x.title}</h3>
+                <p className="text-muted mt-3 leading-relaxed">{x.body}</p>
+              </div>
             ))}
           </div>
         </Section>
       </div>
 
       <Section eyebrow="FAQ" title={`${faq.title} FAQ`}>
-        <FaqList items={faq.items} />
+        <div className="mx-auto max-w-3xl">
+          <FaqList items={faq.items} />
+        </div>
       </Section>
 
-      <section className="mx-auto max-w-6xl px-4 pb-10 text-center">
-        <h2 className="text-3xl font-semibold">Ready to take the first step?</h2>
-        <p className="text-muted mt-3">The pre-screen takes about 3 minutes.</p>
-        <Button asChild size="lg" className="mt-6">
+      <section className="mx-auto max-w-3xl px-4 pb-16 text-center">
+        <p className="label-caps rule-ornament text-accent">Begin</p>
+        <h2 className="mt-6 text-3xl md:text-5xl">Ready to take the first step?</h2>
+        <p className="text-muted mt-4">The pre-screen takes about 3 minutes.</p>
+        <Button asChild size="lg" className="mt-8">
           <Link href={applyHref}>Start Your Application</Link>
         </Button>
       </section>

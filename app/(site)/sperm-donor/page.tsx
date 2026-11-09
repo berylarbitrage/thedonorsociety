@@ -18,7 +18,7 @@ export default function SpermDonorPage() {
           eyebrow: "Sperm donation",
           title: (
             <>
-              Become a sperm donor. Help <Em>families grow.</Em>
+              Become a sperm donor. <Em>Help a family grow.</Em>
             </>
           ),
           subtitle: `Apply online, join our donor database, and get matched with a family. ${spermComp}.`,

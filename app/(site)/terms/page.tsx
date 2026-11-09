@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <Section title="Terms of Use">
       <div className="prose-legal max-w-3xl">
-        <p className="bg-accent-soft rounded-lg p-3 text-sm font-semibold">
+        <p className="border-gold bg-accent-soft border p-3 text-sm font-medium">
           DRAFT — PLACEHOLDER TEXT. These terms must be reviewed by a qualified attorney before
           launch.
         </p>

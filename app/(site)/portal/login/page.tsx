@@ -14,7 +14,7 @@ export default async function LoginPage({
   const next = safeNext(sp.next);
   return (
     <div className="mx-auto max-w-md px-4 py-16">
-      <h1 className="text-3xl font-semibold">Sign in</h1>
+      <h1 className="text-4xl">Sign in</h1>
       <p className="text-muted mt-2 mb-6">
         No password needed — we&apos;ll email you a secure link. Sign-in is available to applicants
         who have pre-qualified.

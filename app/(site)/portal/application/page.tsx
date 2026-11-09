@@ -51,7 +51,7 @@ export default async function FullApplicationPage({
       >
         <ArrowLeft className="size-4" aria-hidden /> Portal home
       </Link>
-      <h1 className="mt-2 mb-6 text-3xl font-semibold">Your full application</h1>
+      <h1 className="mt-3 mb-8 text-4xl">Your full application</h1>
       {welcome && !full?.submitted_at && (
         <div role="status" className="bg-primary-soft mb-6 rounded-xl p-4 text-sm">
           <strong>Great news — you pre-qualify!</strong> Keep going with the sections below. Your

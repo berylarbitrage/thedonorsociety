@@ -303,7 +303,7 @@ export function PrescreenForm({
   if (blocked) {
     return (
       <div role="status" className="bg-card rounded-2xl p-8 text-center shadow-sm">
-        <h2 className="text-2xl font-semibold">Thank you for your interest</h2>
+        <h2 className="text-2xl">Thank you for your interest</h2>
         <p className="text-muted mt-3">
           You must be at least {MIN_APPLICANT_AGE} years old to apply to become a donor. We
           haven&apos;t saved any of your information. We&apos;d love to hear from you once you meet
@@ -344,10 +344,10 @@ export function PrescreenForm({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label="Application progress"
-          className="bg-muted-bg h-2 overflow-hidden rounded-full"
+          className="bg-muted-bg h-2 overflow-hidden rounded-none"
         >
           <div
-            className="bg-primary h-full rounded-full transition-all"
+            className="bg-primary h-full rounded-none transition-all"
             style={{ width: `${pct}%` }}
           />
         </div>
@@ -355,7 +355,7 @@ export function PrescreenForm({
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate className="relative space-y-5">
         <Honeypot name="website" value={honeypot} onChange={(ev) => setHoneypot(ev.target.value)} />
-        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold outline-none">
+        <h2 ref={headingRef} tabIndex={-1} className="text-2xl outline-none">
           {STEP_TITLES[step]}
         </h2>
 
@@ -651,7 +651,7 @@ export function PrescreenForm({
                     ).map(([v, l]) => (
                       <label
                         key={v}
-                        className="border-border bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft has-[:checked]:text-primary flex h-11 cursor-pointer items-center justify-center rounded-full border-2 text-sm font-medium has-[:focus-visible]:outline-2"
+                        className="border-border bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft has-[:checked]:text-primary flex h-11 cursor-pointer items-center justify-center rounded-none border-2 text-sm font-medium has-[:focus-visible]:outline-2"
                       >
                         <input
                           type="radio"

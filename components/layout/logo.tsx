@@ -1,18 +1,28 @@
 import Link from "next/link";
 import { SITE } from "@/config/site";
 import { LogoMark } from "@/components/brand/logo-mark";
+import { cn } from "@/lib/utils";
 
-export function Logo({ showSubtitle = true }: { showSubtitle?: boolean }) {
+export function Logo({
+  showSubtitle = true,
+  className,
+}: {
+  showSubtitle?: boolean;
+  className?: string;
+}) {
   return (
-    <Link href="/" className="group flex items-center gap-2" aria-label={`${SITE.brand} home`}>
-      <LogoMark className="h-9 w-11 shrink-0 transition-transform group-hover:scale-105" />
+    <Link
+      href="/"
+      className={cn("group flex items-center gap-3", className)}
+      aria-label={`${SITE.brand} home`}
+    >
+      <LogoMark className="size-10 shrink-0" />
       <span className="flex flex-col leading-none">
-        <span className="text-primary font-serif text-xl font-medium tracking-tight italic">
+        <span className="font-sans text-[0.8rem] font-medium tracking-[0.3em] whitespace-nowrap uppercase sm:text-[0.9rem]">
           {SITE.brand}
-          <sup className="ml-0.5 align-super text-[0.5em] not-italic">™</sup>
         </span>
         {showSubtitle && (
-          <span className="text-muted mt-1 hidden text-[0.6rem] font-semibold tracking-[0.22em] uppercase sm:block">
+          <span className="mt-1.5 hidden font-serif text-[0.8rem] tracking-wide italic opacity-70 sm:block">
             {SITE.subtitle}
           </span>
         )}

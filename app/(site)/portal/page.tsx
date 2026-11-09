@@ -45,9 +45,7 @@ export default async function PortalPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="text-3xl font-semibold">
-          {app ? `Welcome, ${app.first_name}` : "Applicant Portal"}
-        </h1>
+        <h1 className="text-4xl">{app ? `Welcome, ${app.first_name}` : "Applicant Portal"}</h1>
         <form action="/api/auth/signout" method="post">
           <Button variant="ghost" size="sm">
             Sign out
@@ -65,8 +63,8 @@ export default async function PortalPage() {
               <span>Full application</span>
               <span>{pct}% complete</span>
             </div>
-            <div className="bg-muted-bg h-2 rounded-full">
-              <div className="bg-primary h-full rounded-full" style={{ width: `${pct}%` }} />
+            <div className="bg-muted-bg h-2 rounded-none">
+              <div className="bg-primary h-full rounded-none" style={{ width: `${pct}%` }} />
             </div>
           </div>
           <Button asChild size="lg" className="mt-6">
@@ -82,7 +80,7 @@ export default async function PortalPage() {
       ) : null}
       {app && (
         <Card className="max-w-2xl" id="messages">
-          <h2 className="mb-4 font-sans text-lg font-semibold">Messages</h2>
+          <h2 className="mb-4 text-2xl">Messages</h2>
           <MessageThread viewer="applicant" messages={messages ?? []} />
           <div className="border-border mt-6 border-t pt-6">
             <MessageReply />

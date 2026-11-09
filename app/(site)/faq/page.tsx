@@ -22,33 +22,33 @@ export default function FaqPage() {
     <>
       <JsonLd data={faqJsonLd(all)} />
       <Section
+        eyebrow="FAQ"
         title="Frequently Asked Questions"
         intro="Can't find your answer? Contact us any time."
       >
-        <nav aria-label="FAQ sections" className="mb-10 flex flex-wrap gap-2">
+        <nav
+          aria-label="FAQ sections"
+          className="border-border mx-auto mb-14 flex max-w-3xl flex-wrap justify-center border-y"
+        >
           {ORDER.map((g) => (
-            <a
-              key={g}
-              href={`#${g}`}
-              className="border-border bg-card hover:border-primary rounded-full border px-4 py-2 text-sm font-medium"
-            >
+            <a key={g} href={`#${g}`} className="label-caps hover:text-accent px-4 py-4">
               {FAQ[g].title}
             </a>
           ))}
         </nav>
-        <div className="space-y-12">
+        <div className="mx-auto max-w-3xl space-y-16">
           {ORDER.map((g) => (
             <div key={g} id={g} className="scroll-mt-24">
-              <h2 className="mb-4 text-2xl font-semibold">{FAQ[g].title}</h2>
+              <h2 className="mb-6 text-center text-3xl md:text-4xl">{FAQ[g].title}</h2>
               <FaqList items={FAQ[g].items} />
             </div>
           ))}
         </div>
-        <div className="mt-12 flex flex-col gap-3 sm:flex-row">
+        <div className="mt-16 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild>
             <Link href="/apply/egg">Apply as an Egg Donor</Link>
           </Button>
-          <Button asChild>
+          <Button asChild variant="outline">
             <Link href="/apply/sperm">Apply as a Sperm Donor</Link>
           </Button>
         </div>

@@ -62,10 +62,10 @@ export function FullApplication({
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label="Application completion"
-            className="bg-muted-bg h-2 rounded-full"
+            className="bg-muted-bg h-2 rounded-none"
           >
             <div
-              className="bg-primary h-full rounded-full transition-all"
+              className="bg-primary h-full rounded-none transition-all"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -107,10 +107,10 @@ export function FullApplication({
       </aside>
 
       <section
-        className="bg-card rounded-2xl p-5 shadow-sm sm:p-8"
+        className="border-border bg-card border p-5 sm:p-8"
         aria-labelledby="section-heading"
       >
-        <h2 id="section-heading" tabIndex={-1} className="text-2xl font-semibold outline-none">
+        <h2 id="section-heading" tabIndex={-1} className="text-2xl outline-none">
           {SECTION_TITLES[active]}
         </h2>
         {def && <p className="text-muted mt-1 mb-6 text-sm">{def.description}</p>}
