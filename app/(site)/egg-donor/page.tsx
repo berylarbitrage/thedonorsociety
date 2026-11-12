@@ -4,8 +4,8 @@ import { Em } from "@/components/marketing/hero";
 import { SITE } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Become an Egg Donor",
-  description: `Become an egg donor. Compensation: ${SITE.eggComp}. All medical, travel, legal and insurance costs covered. Apply online in about 3 minutes.`,
+  title: "Egg Donation — Donate With Care",
+  description: `Donate eggs with a coordinator beside you at every step. Compensation of ${SITE.eggComp}, with medical, travel, legal and insurance costs covered. The pre-screen takes about 3 minutes.`,
   alternates: { canonical: "/egg-donor" },
 };
 
@@ -18,68 +18,71 @@ export default function EggDonorPage() {
           eyebrow: "Egg donation",
           title: (
             <>
-              Become an egg donor. <Em>Help a family begin.</Em>
+              Your gift of time, <Em>a family begun.</Em>
             </>
           ),
-          subtitle: `Compensation: ${SITE.eggComp}. Help someone build their family — with a dedicated coordinator by your side.`,
+          subtitle: `Egg donors receive ${SITE.eggComp} and give someone the chance to become a parent. Your coordinator stays with you throughout, and every cost of care is paid.`,
         },
         comp: {
           amount: SITE.eggComp,
           covered: [
-            "All medical screening, medication and procedures",
-            "Travel and accommodation, if needed",
-            "Independent legal consultation",
+            "Every screening, medication and procedure",
+            "Travel and a place to stay, if you need them",
+            "Advice from your own independent attorney",
             "Complication insurance for your cycle",
           ],
         },
         steps: [
-          { title: "Pre-screen", body: "Answer a few basic questions online (about 3 minutes)." },
+          {
+            title: "Pre-screen",
+            body: "A few simple questions online — about 3 minutes of your time.",
+          },
           {
             title: "Full application",
-            body: "Complete your profile, health history and photos in your secure portal.",
+            body: "Add your profile, health history and photos in your private portal, at your own pace.",
           },
           {
             title: "Video interview",
-            body: "Meet your coordinator on a short video call to talk through the process.",
+            body: "A short video call with your coordinator to talk everything through.",
           },
           {
             title: "Matching",
-            body: "Your anonymous profile is shared with intended parents who are looking for a donor.",
+            body: "Intended parents looking for a donor see your anonymous profile.",
           },
           {
             title: "Medical & psychological evaluation",
-            body: "Blood work, ultrasound, genetic testing and a session with a mental-health professional at a partner clinic.",
+            body: "At a partner clinic: blood work, an ultrasound, genetic testing and a conversation with a mental-health professional.",
           },
           {
             title: "Legal contract",
-            body: "You sign an agreement reviewed by your own independent attorney, at no cost to you.",
+            body: "Your own independent attorney reviews the agreement with you before you sign — at no cost to you.",
           },
           {
             title: "Ovarian stimulation (about 10–14 days)",
-            body: "Daily hormone injections with regular monitoring appointments.",
+            body: "Daily hormone injections, with regular monitoring appointments to keep an eye on you.",
           },
           {
             title: "Egg retrieval",
-            body: "A short outpatient procedure under light sedation (about 20–30 minutes).",
+            body: "A brief outpatient procedure under light sedation, lasting about 20–30 minutes.",
           },
-          { title: "Payment", body: "Your compensation is paid after the retrieval is complete." },
+          { title: "Payment", body: "Your compensation is paid once the retrieval is complete." },
         ],
         concerns: [
           {
             title: "Is it safe?",
-            body: "Egg donation is a well-established procedure performed by experienced physicians. As with any medical treatment, there are risks — such as ovarian hyperstimulation syndrome (OHSS) or reactions to medication — which the clinic monitors closely. The clinic will review all risks with you before you agree.",
+            body: "Egg donation is a long-established procedure carried out by experienced physicians. Like any medical treatment it carries risks — ovarian hyperstimulation syndrome (OHSS) or a reaction to medication, for example — and the clinic watches closely for them. They will walk you through every risk before you agree.",
           },
           {
-            title: "Does it hurt?",
-            body: "Injections use small needles and most donors adjust quickly. Retrieval is done under sedation. Afterward, cramping and bloating for a few days is common.",
+            title: "Will it hurt?",
+            body: "The injections use small needles, and most donors find them easier than expected. Retrieval happens under sedation. A few days of cramping and bloating afterward is common.",
           },
           {
-            title: "Will it affect my future fertility?",
-            body: "Current research has not found that egg donation reduces fertility in healthy donors, but long-term data is still limited. Please discuss your personal situation with a physician.",
+            title: "What about my own fertility later?",
+            body: "Research so far hasn't found that egg donation reduces fertility in healthy donors, though long-term data is still limited. A physician can talk through your own situation with you.",
           },
           {
-            title: "Will I be anonymous?",
-            body: "Most donations are anonymous. Some families request a known or open-ID arrangement; you'll always know which before you agree, and it will be in your contract.",
+            title: "Will I stay anonymous?",
+            body: "Most donations are anonymous. A few families ask for a known or open-ID arrangement — you'll always know which before agreeing, and it will be written into your contract.",
           },
         ],
       }}

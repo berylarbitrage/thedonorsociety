@@ -22,14 +22,14 @@ export function LoginCard({
 }) {
   return (
     <div className="bg-background flex min-h-dvh items-center justify-center px-4 py-16">
-      <div className="border-ink bg-card w-full max-w-sm border p-8">
+      <div className="fabric-card stitched w-full max-w-sm p-8 [--stitch:var(--thread)]">
         <div className="mb-6 flex items-center gap-3">
-          <span className="bg-primary-soft text-primary flex size-10 items-center justify-center rounded-none">
+          <span className="bg-primary-soft text-primary flex size-10 items-center justify-center rounded-full">
             <Icon className="size-5" aria-hidden />
           </span>
           <div>
-            <p className="text-primary font-serif font-semibold">{SITE.brand}</p>
-            <p className="text-muted text-xs tracking-widest uppercase">{area}</p>
+            <p className="font-script text-thread text-xl">{SITE.brand}</p>
+            <p className="thread-label text-muted">{area}</p>
           </div>
         </div>
         <h1 className="text-2xl">{title}</h1>

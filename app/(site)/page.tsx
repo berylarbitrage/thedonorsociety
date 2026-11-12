@@ -2,52 +2,71 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Em, Hero } from "@/components/marketing/hero";
 import { Section } from "@/components/marketing/section";
+import { FabricLabel } from "@/components/marketing/fabric-label";
 import { FaqList } from "@/components/marketing/faq-list";
 import { ReferralBanner } from "@/components/marketing/referral-banner";
 import { JsonLd } from "@/components/marketing/jsonld";
-import { toRoman } from "@/components/marketing/roman";
+import {
+  CrossStitchRow,
+  Needle,
+  StitchIcon,
+  type SamplerIcon,
+} from "@/components/brand/stitch-bits";
 import { Button } from "@/components/ui/button";
 import { SITE, spermComp } from "@/config/site";
 import { HOME_FAQ } from "@/content/faq";
 import { organizationJsonLd } from "@/lib/seo";
 
-const PROCESS = [
-  { title: "Apply", body: "Answer a few brief questions online. It takes about 3 minutes." },
+const STEPS = [
   {
-    title: "Complete your profile",
-    body: "Finish your application online and meet your personal coordinator.",
+    word: "One",
+    title: "Send a short pre-screen",
+    body: "A handful of simple questions, about 3 minutes from start to finish.",
   },
   {
-    title: "Get matched with a family",
-    body: "We introduce you to intended parents; screening follows at a partner clinic.",
-  },
-  { title: "Get compensated", body: "Receive compensation for your time and commitment." },
-];
-
-const PRINCIPLES = [
-  {
-    title: "A dedicated coordinator",
-    body: "One person guides you through every step, and is there to answer your questions.",
+    word: "Two",
+    title: "Fill in your application",
+    body: "Your answers save as you go, and your coordinator gets to know you.",
   },
   {
-    title: "Transparent compensation",
-    body: "Clear amounts, stated up front. Compensation is for your time — never based on appearance, ethnicity or other personal traits.",
+    word: "Three",
+    title: "Meet your family",
+    body: "Intended parents choose you; screening then takes place at a partner clinic.",
   },
   {
-    title: "Discretion & privacy",
-    body: "Your information is encrypted, never sold, and shared only with our partner clinics.",
-  },
-  {
-    title: "Open to donors worldwide",
-    body: `${SITE.serviceArea}.`,
+    word: "Four",
+    title: "Receive your compensation",
+    body: "Paid in recognition of your time, effort and commitment.",
   },
 ];
 
-const PERKS = ["All medical costs covered", "Genetic testing at no cost", "Flexible scheduling"];
+const SAMPLER: { icon: SamplerIcon; title: string; body: string }[] = [
+  {
+    icon: "coordinator",
+    title: "Someone who knows your name",
+    body: "Your own coordinator stays with you from the first form to the final day — call or text whenever a question comes up.",
+  },
+  {
+    icon: "compensation",
+    title: "Amounts you can see",
+    body: "Compensation is set out plainly before you begin, and it rewards your time — never your looks, background or other personal traits.",
+  },
+  {
+    icon: "privacy",
+    title: "Kept close",
+    body: "What you share is encrypted, never sold, and passed only to the partner clinics involved in your care.",
+  },
+  {
+    icon: "worldwide",
+    title: "Wherever you live",
+    body: `${SITE.serviceArea}, with any program travel arranged and paid for.`,
+  },
+];
 
-const MENU = [
-  { href: "/egg-donor", who: "Egg donation", amount: SITE.eggComp },
-  { href: "/sperm-donor", who: "Sperm donation", amount: spermComp },
+const PERKS = [
+  "Medical costs fully covered",
+  "Genetic testing at no charge",
+  "Appointments around your life",
 ];
 
 export default function HomePage() {
@@ -59,19 +78,15 @@ export default function HomePage() {
         eyebrow={SITE.subtitle}
         title={
           <>
-            An invitation to give <Em>the gift of family.</Em>
+            A family, <Em>stitched together with care.</Em>
           </>
         }
-        subtitle="Become an egg or sperm donor and help someone become a parent — guided by a dedicated coordinator, with every medical cost covered and compensation for your time."
+        subtitle="As an egg or sperm donor, you help someone become a parent. We take every step alongside you — one coordinator beside you, every medical cost paid, and compensation for your time."
         footnote={
-          <ul className="text-muted label-caps flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-0">
-            {PERKS.map((label, i) => (
-              <li key={label} className="flex items-center">
-                {i > 0 && (
-                  <span className="text-gold mx-5 hidden text-[0.5rem] sm:inline" aria-hidden>
-                    ◆
-                  </span>
-                )}
+          <ul className="text-muted flex flex-col gap-2 font-sans text-sm font-semibold sm:flex-row sm:flex-wrap sm:gap-x-6">
+            {PERKS.map((label) => (
+              <li key={label} className="flex items-center gap-2">
+                <span className="bg-knot size-2.5 shrink-0 rounded-full" aria-hidden />
                 {label}
               </li>
             ))}
@@ -86,89 +101,106 @@ export default function HomePage() {
         </Button>
       </Hero>
 
-      {/* Compensation, set like a menu card */}
-      <section className="on-ink bg-ink text-ivory">
-        <div className="mx-auto max-w-4xl px-4 py-20 md:py-28">
-          <p className="label-caps rule-ornament text-gold-light text-center">Compensation</p>
-          <h2 className="mt-6 text-center text-[2.1rem] leading-tight md:text-5xl">
-            For your time <Em>and commitment</Em>
-          </h2>
-          <ul className="border-ink-line mt-14 border-t">
-            {MENU.map((m, i) => (
-              <li key={m.href} className="border-ink-line border-b">
-                <Link
-                  href={m.href}
-                  className="group grid justify-items-center gap-3 py-8 text-center md:grid-cols-[4rem_1fr_auto] md:items-baseline md:justify-items-start md:gap-8 md:py-10 md:text-left"
-                >
-                  <span className="text-gold-light font-serif text-2xl italic" aria-hidden>
-                    {toRoman(i + 1)}
-                  </span>
-                  <span>
-                    <span className="label-caps text-ink-muted block">{m.who}</span>
-                    <span className="mt-3 block font-serif text-2xl leading-snug md:text-4xl">
-                      {m.amount}
-                    </span>
-                  </span>
-                  <span className="label-caps text-gold-light inline-flex items-center gap-2 group-hover:underline group-hover:underline-offset-4">
-                    Learn more
-                    <ArrowRight
-                      className="size-3.5 transition-transform group-hover:translate-x-1"
-                      aria-hidden
-                    />
-                  </span>
-                </Link>
+      {/* Why us — an embroidered sampler panel */}
+      <section className="mx-auto max-w-6xl px-4 pt-2 pb-10 md:pb-16">
+        <div className="fabric-card stitched rounded-[2rem] px-5 py-10 [--stitch-inset:12px] [--stitch:var(--thread)] sm:px-10 md:px-16 md:py-14">
+          <CrossStitchRow className="mx-auto w-40" />
+          <header className="mx-auto mt-6 max-w-2xl text-center">
+            <p className="thread-label text-accent">Why donors choose us</p>
+            <h2 className="mt-3 text-[2rem] leading-[1.15] md:text-[2.75rem]">
+              Our promise, <Em>stitch by stitch</Em>
+            </h2>
+          </header>
+          <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2 md:mt-12">
+            {SAMPLER.map((s) => (
+              <li
+                key={s.title}
+                className="flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left"
+              >
+                <span className="bg-linen flex size-20 shrink-0 items-center justify-center rounded-full border-2 border-dashed border-[#cdb894]">
+                  <StitchIcon name={s.icon} className="size-12" />
+                </span>
+                <div className="mt-4 sm:mt-1 sm:ml-5">
+                  <h3 className="text-xl md:text-2xl">{s.title}</h3>
+                  <p className="text-muted mt-2 leading-relaxed">{s.body}</p>
+                </div>
               </li>
             ))}
           </ul>
-          <p className="text-ink-muted mt-8 text-center text-sm">
-            Compensation amounts vary by program and are paid for your time, effort, and commitment.
-          </p>
+          <CrossStitchRow className="mx-auto mt-10 w-40" />
         </div>
       </section>
 
-      <Section eyebrow="How it works" title="Four considered steps">
-        <ol className="border-ink grid border-t sm:grid-cols-2 lg:grid-cols-4">
-          {PROCESS.map((s, i) => (
-            <li
-              key={s.title}
-              className="border-border border-b px-2 py-10 text-center sm:px-6 lg:border-b-0 lg:border-l lg:first:border-l-0"
-            >
-              <span className="text-accent block font-serif text-4xl italic">{toRoman(i + 1)}</span>
-              <span className="bg-gold mx-auto mt-5 block h-px w-8" aria-hidden />
-              <h3 className="text-primary mt-5 text-2xl">{s.title}</h3>
-              <p className="text-muted mx-auto mt-3 max-w-xs leading-relaxed">{s.body}</p>
-            </li>
-          ))}
-        </ol>
+      {/* Compensation — two sewn-in labels */}
+      <Section
+        eyebrow="Compensation"
+        title={
+          <>
+            What we offer, <Em>clearly labelled</Em>
+          </>
+        }
+      >
+        <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 md:gap-10">
+          <FabricLabel who="Egg donors" href="/egg-donor" tone="sage" className="md:-rotate-1">
+            {SITE.eggComp}
+          </FabricLabel>
+          <FabricLabel who="Sperm donors" href="/sperm-donor" tone="thread" className="md:rotate-1">
+            {spermComp}
+          </FabricLabel>
+        </div>
+        <p className="text-muted mx-auto mt-8 max-w-2xl text-center text-sm">
+          Amounts vary by program. Compensation is paid for your time, effort and commitment.
+        </p>
       </Section>
 
-      <div className="bg-muted-bg border-border border-y">
-        <Section eyebrow="Our principles" title={<>The terms we keep</>}>
-          <dl className="mx-auto grid max-w-5xl gap-x-16 md:grid-cols-2">
-            {PRINCIPLES.map(({ title, body }, i) => (
-              <div key={title} className="border-border flex gap-6 border-t py-8">
-                <span className="text-accent w-8 shrink-0 font-serif text-lg italic" aria-hidden>
-                  {toRoman(i + 1)}.
+      {/* How it works — four steps on one running stitch */}
+      <Section eyebrow="How it works" title="From first thread to finished piece">
+        <div className="relative">
+          <span
+            className="running-stitch-x absolute top-5 right-[12.5%] left-[12.5%] hidden lg:block"
+            aria-hidden
+          />
+          <Needle className="absolute top-2 right-[3%] hidden h-6 w-16 lg:block" />
+          <ol className="relative grid gap-9 lg:grid-cols-4 lg:gap-6">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="relative pl-16 lg:pl-0 lg:text-center">
+                {i < STEPS.length - 1 && (
+                  <span
+                    className="running-stitch-y absolute top-12 -bottom-8 left-[calc(1.25rem-1.5px)] lg:hidden"
+                    aria-hidden
+                  />
+                )}
+                <span
+                  className="bg-knot absolute top-0 left-0 flex size-10 items-center justify-center rounded-full lg:static lg:mx-auto"
+                  aria-hidden
+                >
+                  <span className="size-3 rounded-full border-2 border-[#b88a22]" />
                 </span>
-                <div>
-                  <dt className="font-serif text-2xl">{title}</dt>
-                  <dd className="text-muted mt-2 leading-relaxed">{body}</dd>
-                </div>
-              </div>
+                <span
+                  className={`font-script block text-[2rem] leading-tight lg:mt-4 ${i % 2 ? "text-sage-deep" : "text-thread"}`}
+                >
+                  {s.word}
+                </span>
+                <h3 className="mt-1 text-xl">{s.title}</h3>
+                <p className="text-muted mt-2 leading-relaxed lg:mx-auto lg:max-w-[15rem]">
+                  {s.body}
+                </p>
+              </li>
             ))}
-          </dl>
-        </Section>
-      </div>
+          </ol>
+        </div>
+      </Section>
 
-      <Section eyebrow="Questions" title="Common questions">
+      {/* A few questions, with stitched dividers */}
+      <Section eyebrow="Questions" title="Questions, answered with care">
         <div className="mx-auto max-w-3xl">
           <FaqList items={HOME_FAQ} />
-          <p className="mt-10 text-center">
+          <p className="mt-8 text-center">
             <Link
               href="/faq"
-              className="label-caps decoration-gold inline-flex items-center gap-2 underline underline-offset-8"
+              className="text-primary hover:text-ink inline-flex items-center gap-2 rounded font-sans font-bold underline decoration-dashed underline-offset-4"
             >
-              See all questions <ArrowRight className="size-3.5" aria-hidden />
+              Read every answer <ArrowRight className="size-4" aria-hidden />
             </Link>
           </p>
         </div>

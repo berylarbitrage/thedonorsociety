@@ -1,3 +1,4 @@
+import { Eyebrow } from "@/components/marketing/hero";
 import { cn } from "@/lib/utils";
 
 export function Section({
@@ -19,26 +20,18 @@ export function Section({
 }) {
   const centered = align === "center";
   return (
-    <section id={id} className={cn("mx-auto max-w-6xl px-4 py-16 md:py-24", className)}>
+    <section id={id} className={cn("mx-auto max-w-6xl px-4 py-14 md:py-20", className)}>
       {(eyebrow || title || intro) && (
         <header
-          className={cn("mb-12 md:mb-16", centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl")}
+          className={cn("mb-10 md:mb-14", centered ? "mx-auto max-w-2xl text-center" : "max-w-2xl")}
         >
-          {eyebrow && (
-            <p
-              className={cn(
-                "label-caps text-accent mb-5",
-                centered ? "rule-ornament" : "flex items-center gap-3",
-              )}
-            >
-              {!centered && <span className="bg-gold h-px w-10" aria-hidden />}
-              <span className="text-accent">{eyebrow}</span>
-            </p>
-          )}
+          {eyebrow && <Eyebrow center={centered}>{eyebrow}</Eyebrow>}
           {title && (
-            <h2 className="text-primary text-[2.1rem] leading-[1.1] md:text-5xl">{title}</h2>
+            <h2 className={cn("text-[2rem] leading-[1.15] md:text-[2.75rem]", eyebrow && "mt-4")}>
+              {title}
+            </h2>
           )}
-          {intro && <div className="text-muted mt-5 text-lg leading-relaxed">{intro}</div>}
+          {intro && <div className="text-muted mt-4 text-lg leading-relaxed">{intro}</div>}
         </header>
       )}
       {children}

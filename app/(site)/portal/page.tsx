@@ -63,8 +63,8 @@ export default async function PortalPage() {
               <span>Full application</span>
               <span>{pct}% complete</span>
             </div>
-            <div className="bg-muted-bg h-2 rounded-none">
-              <div className="bg-primary h-full rounded-none" style={{ width: `${pct}%` }} />
+            <div className="bg-muted-bg h-2.5 rounded-full">
+              <div className="bg-thread h-full rounded-full" style={{ width: `${pct}%` }} />
             </div>
           </div>
           <Button asChild size="lg" className="mt-6">
@@ -82,7 +82,7 @@ export default async function PortalPage() {
         <Card className="max-w-2xl" id="messages">
           <h2 className="mb-4 text-2xl">Messages</h2>
           <MessageThread viewer="applicant" messages={messages ?? []} />
-          <div className="border-border mt-6 border-t pt-6">
+          <div className="mt-6 border-t-2 border-dashed border-[#cdb894] pt-6">
             <MessageReply />
             <p className="text-muted mt-3 text-xs">
               Messages here are private between you and your coordinator.

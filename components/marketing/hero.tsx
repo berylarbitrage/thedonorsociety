@@ -1,5 +1,9 @@
 import { HeroArt } from "@/components/brand/hero-art";
 
+/**
+ * Two-column hero: words on the left, an embroidery hoop on the right.
+ * On small screens the hoop sits above the headline, smaller.
+ */
 export function Hero({
   eyebrow,
   title,
@@ -16,26 +20,48 @@ export function Hero({
   footnote?: React.ReactNode;
 }) {
   return (
-    <section className="border-border relative border-b">
-      <div className="mx-auto max-w-4xl px-4 pt-14 pb-16 text-center md:pt-20 md:pb-24">
-        <HeroArt variant={art} className="text-ink mx-auto size-32 md:size-40" />
-        {eyebrow && <p className="label-caps rule-ornament text-accent mt-10">{eyebrow}</p>}
-        <h1 className="text-primary mx-auto mt-6 max-w-3xl text-[2.6rem] leading-[1.04] md:text-7xl">
-          {title}
-        </h1>
-        <p className="text-muted mx-auto mt-7 max-w-xl text-lg leading-relaxed md:text-xl">
-          {subtitle}
-        </p>
-        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
-          {children}
+    <section className="relative overflow-hidden">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 px-4 pt-8 pb-14 md:grid-cols-[1.1fr_0.9fr] md:gap-10 md:pt-16 md:pb-20">
+        <div className="order-2 md:order-1">
+          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+          <h1 className="mt-5 text-[2.5rem] leading-[1.1] md:text-[3.6rem]">{title}</h1>
+          <p className="text-muted mt-6 max-w-xl text-lg leading-relaxed">{subtitle}</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">{children}</div>
+          {footnote && <div className="mt-8">{footnote}</div>}
         </div>
-        {footnote && <div className="mt-12">{footnote}</div>}
+        <div className="order-1 md:order-2">
+          <HeroArt
+            variant={art}
+            className="mx-auto h-auto w-56 sm:w-72 md:w-full md:max-w-[26rem]"
+          />
+        </div>
       </div>
     </section>
   );
 }
 
-/** Italic Didone emphasis for a word or phrase inside a headline. */
+/** Small sans label with a short running stitch before it. */
+export function Eyebrow({
+  children,
+  center = false,
+}: {
+  children: React.ReactNode;
+  center?: boolean;
+}) {
+  return (
+    <p
+      className={`thread-label text-accent flex items-center gap-3 ${center ? "justify-center" : ""}`}
+    >
+      <span className="running-stitch-x w-9 shrink-0 [--stitch:var(--sage-deep)]" aria-hidden />
+      <span>{children}</span>
+      {center && (
+        <span className="running-stitch-x w-9 shrink-0 [--stitch:var(--sage-deep)]" aria-hidden />
+      )}
+    </p>
+  );
+}
+
+/** Emphasised headline words: red thread, dashed stitched underline. */
 export function Em({ children }: { children: React.ReactNode }) {
-  return <em className="font-serif italic">{children}</em>;
+  return <span className="stitch-em">{children}</span>;
 }

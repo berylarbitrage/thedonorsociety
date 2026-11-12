@@ -19,7 +19,7 @@ export function YesNo({
 }) {
   return (
     <fieldset aria-describedby={error ? `${name}-error` : undefined} className="space-y-2">
-      <legend className="text-sm font-medium">
+      <legend className="font-sans text-sm font-semibold">
         {legend}
         <span className="text-destructive"> *</span>
       </legend>
@@ -29,7 +29,7 @@ export function YesNo({
           <label
             key={v}
             className={cn(
-              "border-border bg-card flex h-11 flex-1 cursor-pointer items-center justify-center rounded-none border-2 text-sm font-medium capitalize",
+              "border-field bg-card flex h-11 flex-1 cursor-pointer items-center justify-center rounded-xl border-2 font-sans text-sm font-bold capitalize has-[:checked]:border-dashed",
               "has-[:checked]:border-primary has-[:checked]:bg-primary-soft has-[:checked]:text-primary",
               "has-[:focus-visible]:outline-ring has-[:focus-visible]:outline-2",
             )}

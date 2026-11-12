@@ -4,8 +4,8 @@ import { Em } from "@/components/marketing/hero";
 import { PARTNER_CLINICS_LINE, SITE, spermComp } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Become a Sperm Donor",
-  description: `Become a sperm donor and get matched with a family. ${spermComp}. Apply online in about 3 minutes — U.S. and international donors welcome.`,
+  title: "Sperm Donation — Join Our Donor Database",
+  description: `Join our donor database and be chosen by a family. ${spermComp}. A 3-minute pre-screen to begin — donors in the U.S. and internationally welcome.`,
   alternates: { canonical: "/sperm-donor" },
 };
 
@@ -18,53 +18,56 @@ export default function SpermDonorPage() {
           eyebrow: "Sperm donation",
           title: (
             <>
-              Become a sperm donor. <Em>Help a family grow.</Em>
+              Your kindness, <Em>woven into a family.</Em>
             </>
           ),
-          subtitle: `Apply online, join our donor database, and get matched with a family. ${spermComp}.`,
+          subtitle: `Apply online, join our donor database, and wait to be chosen by a family who needs you. ${spermComp}.`,
         },
         partnerNote: (
           <>
-            <strong>How we work:</strong> {SITE.brand} handles recruitment, your application and
-            matching you with a family. Medical screening, testing and sample handling are{" "}
+            <strong>Who does what:</strong> {SITE.brand} looks after recruitment, your application
+            and matching you with a family. Medical screening, testing and sample handling are{" "}
             {PARTNER_CLINICS_LINE}.
           </>
         ),
         comp: {
           amount: spermComp,
           covered: [
-            "Medical screening once you're matched",
+            "Medical screening, once a family has chosen you",
             "Genetic and infectious-disease testing",
-            "Travel, if a match requires it",
-            "A dedicated coordinator from application to completion",
+            "Travel, if your match calls for it",
+            "Your own coordinator, from first form to final donation",
           ],
-          note: "Paid for your time and commitment once a donation is completed. The exact amount depends on the program.",
+          note: "Paid once a donation is completed, in recognition of your time and commitment. The exact amount depends on the program.",
         },
         steps: [
-          { title: "Pre-screen", body: "Answer a few basic questions online (about 3 minutes)." },
+          {
+            title: "Pre-screen",
+            body: "A few simple questions online — about 3 minutes of your time.",
+          },
           {
             title: "Full application",
-            body: "Continue straight into your profile and family health history — progress saves automatically.",
+            body: "Carry straight on into your profile and family health history; everything saves as you go.",
           },
           {
             title: "Coordinator call",
-            body: "A short call to get to know you and answer your questions.",
+            body: "A short, friendly call so we can get to know you and answer anything on your mind.",
           },
           {
             title: "Approved — join our donor database",
-            body: "Once approved, your anonymous profile is added to our donor database.",
+            body: "When you're approved, your anonymous profile joins our donor database.",
           },
           {
             title: "Get matched with a family",
-            body: "Intended parents review profiles and choose a donor. We'll let you know when you're matched.",
+            body: "Intended parents look through profiles and choose their donor. We'll tell you as soon as you're matched.",
           },
           {
             title: "Medical screening & collection",
-            body: `After a match, a partner clinic arranges screening, testing and collection. These are ${PARTNER_CLINICS_LINE}.`,
+            body: `Once you're matched, a partner clinic arranges screening, testing and collection — all ${PARTNER_CLINICS_LINE}.`,
           },
           {
             title: "Donor agreement",
-            body: "Review and sign your donor agreement before any donation.",
+            body: "You read and sign your donor agreement before any donation takes place.",
           },
           {
             title: "Get compensated",
@@ -74,19 +77,19 @@ export default function SpermDonorPage() {
         concerns: [
           {
             title: "Is it safe?",
-            body: "Sperm donation is non-invasive. Screening involves routine tests performed by licensed medical staff at our partner clinics.",
+            body: "Sperm donation is non-invasive. Screening is made up of routine tests carried out by licensed medical staff at our partner clinics.",
           },
           {
-            title: "What is the time commitment?",
-            body: "Before a match: just your application and a short coordinator call. After a match, the partner clinic will explain the appointments involved before you agree to anything.",
+            title: "How much time will it take?",
+            body: "Before a match, only your application and one short coordinator call. After a match, the partner clinic explains every appointment involved before you agree to anything.",
           },
           {
-            title: "Will I be anonymous?",
-            body: "It depends on the family's wishes. Some arrangements are anonymous, others known or open-ID. You'll know the arrangement before signing.",
+            title: "Will I stay anonymous?",
+            body: "That rests on the family's wishes — some arrangements are anonymous, others known or open-ID. You'll know which before you sign.",
           },
           {
-            title: "Legal responsibility",
-            body: "Donations are made under a written donor agreement that generally protects donors from parental rights and obligations. Laws vary by location — the details will be explained to you.",
+            title: "Would I have legal responsibilities?",
+            body: "Every donation is made under a written donor agreement that generally protects donors from parental rights and obligations. Laws differ by location, and the details will be explained to you.",
           },
         ],
       }}

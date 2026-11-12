@@ -14,7 +14,7 @@ function CopyRow({ label, url }: { label: string; url: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="space-y-1.5">
-      <p className="text-sm font-medium">{label}</p>
+      <p className="font-sans text-sm font-semibold">{label}</p>
       <div className="flex gap-2">
         <Input readOnly value={url} aria-label={label} onFocus={(e) => e.currentTarget.select()} />
         <Button
@@ -62,7 +62,10 @@ export function ReferForm() {
 
   if (links) {
     return (
-      <div className="border-border bg-card space-y-5 border p-6 md:p-8" role="status">
+      <div
+        className="fabric-card stitched space-y-5 p-7 [--stitch:var(--sage-deep)] md:p-10"
+        role="status"
+      >
         <p className="text-lg font-semibold">Your referral links are ready!</p>
         <p className="text-muted text-sm">
           Share the link that fits your friend. We&apos;ll remember the referral for 30 days after
@@ -78,7 +81,7 @@ export function ReferForm() {
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="border-border bg-card relative space-y-5 border p-6 md:p-8"
+      className="fabric-card stitched relative space-y-5 p-7 [--stitch:var(--sage-deep)] md:p-10"
     >
       <Honeypot {...register("website")} />
       <Field id="name" label="Your name" required error={errors.name?.message}>

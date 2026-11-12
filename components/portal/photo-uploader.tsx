@@ -93,10 +93,10 @@ export function PhotoUploader({
                       width={200}
                       height={200}
                       unoptimized
-                      className="aspect-square w-full rounded-lg object-cover"
+                      className="aspect-square w-full rounded-2xl object-cover"
                     />
                   ) : (
-                    <div className="bg-muted-bg aspect-square rounded-lg" />
+                    <div className="bg-muted-bg aspect-square rounded-2xl" />
                   )}
                   {!readOnly && (
                     <Button
@@ -115,7 +115,7 @@ export function PhotoUploader({
               ))}
             {!readOnly && remaining > 0 && (
               <li>
-                <label className="border-border text-muted hover:border-primary has-[:focus-visible]:outline-ring flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed text-sm has-[:focus-visible]:outline-2">
+                <label className="border-border text-muted hover:border-primary has-[:focus-visible]:outline-ring border-field flex aspect-square cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed text-sm has-[:focus-visible]:outline-2">
                   <Upload className="size-6" aria-hidden />
                   {busy === kind ? "Uploading…" : `Add ${kind} photo`}
                   <input

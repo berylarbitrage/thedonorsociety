@@ -19,7 +19,7 @@ export const SITE = {
   spermCompGeneric: "Compensation provided per completed donation; amount varies by program",
   referralBonus: "$500", // {{REFERRAL_BONUS}}
   serviceArea: "Serving donors across the U.S. and internationally",
-  tagline: "An invitation to give the gift of family.",
+  tagline: "Stitched together with care.",
   subtitle: "Egg & Sperm Donation",
 } as const;
 

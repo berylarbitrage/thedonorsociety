@@ -13,141 +13,141 @@ const sperm = ELIGIBILITY.sperm;
 
 export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
   general: {
-    title: "General Questions",
+    title: "Before you begin",
     items: [
       {
-        q: "Who are you, and what do you do?",
-        a: `${SITE.brand} recruits and pre-screens egg and sperm donors and matches them with intended-parent families. Medical screening, testing, procedures and sample handling are ${PARTNER_CLINICS_LINE}.`,
+        q: "How much time does the first step take?",
+        a: "The online pre-screen takes about 3 minutes. It asks only the basics — we won't ask for your Social Security number, medical records or photos at this stage.",
       },
       {
-        q: "How long does the online pre-screen take?",
-        a: "About 3 minutes. We only ask basic questions at this stage — no Social Security number, medical records, or photos.",
+        q: "What happens once I've sent the pre-screen?",
+        a: "Your initial result appears straight away. If you pre-qualify, you can carry on into the full application right then. Every step saves as you go, and we also email you a link so you can pick it up again whenever suits you. After that, a coordinator will be in touch.",
       },
       {
-        q: "What happens after I submit the pre-screen?",
-        a: "You'll see your initial result right away. If you pre-qualify, you continue straight into the full application on our website — your progress is saved after every step, and we also email you a link so you can come back any time. A coordinator will then reach out.",
+        q: "What exactly does The Donor Society do?",
+        a: `We find and pre-screen egg and sperm donors, walk alongside them through the application, and match them with intended-parent families. Medical screening, testing, procedures and sample handling are ${PARTNER_CLINICS_LINE}.`,
       },
       {
-        q: "Where do you operate?",
-        a: `${SITE.serviceArea}. Some programs may require travel, which is arranged and paid for.`,
+        q: "Do you accept donors outside the U.S.?",
+        a: `Yes. ${SITE.serviceArea}. If a program involves travel, it is arranged and paid for.`,
       },
       {
-        q: "Is my information kept private?",
-        a: "Yes. Your information is stored securely, is only accessed by our screening team and partner clinics, and is never sold. See our Privacy Policy for details.",
+        q: "How is my personal information looked after?",
+        a: "It is stored securely, seen only by our screening team and partner clinics, and never sold. Our Privacy Policy sets out the details.",
       },
       {
-        q: "Is compensation based on my looks, ethnicity, or test scores?",
-        a: "No. Compensation is for your time, effort, and commitment to the process. It is never based on personal traits such as appearance, ethnicity, or intelligence.",
+        q: "Can I ask you to delete my information?",
+        a: `Yes. Write to ${SITE.contactEmail}. Once we've confirmed it's you, we'll delete your data, apart from anything we're legally required to keep.`,
       },
       {
-        q: "Can I refer a friend?",
-        a: `Yes! You earn ${SITE.referralBonus} when someone you refer completes a donation. Visit our Refer a Friend page to get your personal link.`,
+        q: "Am I free to change my mind?",
+        a: "Always. Donating is voluntary, and you can step away at any point before a procedure.",
       },
       {
-        q: "Can I withdraw at any time?",
-        a: "Yes. Donation is voluntary, and you can withdraw from the process at any point before a procedure.",
+        q: "Does how I look, my background or my grades affect what I'm paid?",
+        a: "No. Compensation recognizes your time, effort and commitment — never appearance, ethnicity, intelligence or any other personal trait.",
       },
       {
-        q: "How do I request deletion of my data?",
-        a: `Email ${SITE.contactEmail} with your request. We'll confirm your identity and delete your data, subject to any legal record-keeping requirements.`,
+        q: "Can you give me medical advice?",
+        a: "We can talk you through the process, but medical questions belong with a licensed physician. Final eligibility is decided by our partner medical providers.",
       },
       {
-        q: "Do you provide medical advice?",
-        a: "No. We can explain the process, but please talk to a licensed physician about any medical questions. Final eligibility is determined by our partner medical providers.",
+        q: "Is there a thank-you for referring a friend?",
+        a: `Yes — you receive ${SITE.referralBonus} once someone you refer completes a donation. Your personal link is waiting on our Refer a Friend page.`,
       },
     ],
   },
   egg: {
-    title: "Egg Donation",
+    title: "Egg donation",
     items: [
       {
-        q: "What are the basic requirements to be an egg donor?",
-        a: `You should be ${egg.minAge}–${egg.maxAge} years old, have a BMI under ${egg.maxBmi}, be a non-smoker, have regular menstrual cycles, and have at least a high school diploma.`,
+        q: "What is egg donors' compensation?",
+        a: `Typically ${SITE.eggComp}, for your time and commitment. Medical, travel, legal and insurance costs are all covered on top of that.`,
       },
       {
-        q: "How much are egg donors compensated?",
-        a: `Compensation is typically ${SITE.eggComp}, paid for your time and commitment. All medical, travel, legal, and insurance costs are covered separately.`,
+        q: "Who can become an egg donor?",
+        a: `The starting guidelines: ${egg.minAge}–${egg.maxAge} years old, a BMI under ${egg.maxBmi}, a non-smoker, regular menstrual cycles, and at least a high school diploma.`,
       },
       {
-        q: "How long does the whole process take?",
-        a: "From application to retrieval usually takes about 2–4 months. The active medication phase is about 10–14 days, and the full commitment including screening is about 3–6 weeks of appointments.",
+        q: "How long is the journey from start to finish?",
+        a: "Usually about 2–4 months from application to retrieval. The medication phase lasts roughly 10–14 days, and screening plus appointments add up to about 3–6 weeks of commitment.",
       },
       {
-        q: "Does egg retrieval hurt?",
-        a: "Retrieval is done under light sedation, so most donors feel no pain during the procedure. Mild cramping or bloating afterward is common and usually resolves within a few days. Ask the clinic's physician about what to expect for you.",
+        q: "Could donating affect my fertility later on?",
+        a: "Current research hasn't shown that egg donation lowers future fertility in healthy donors, but everyone is different. The clinic's physician will go through the risks with you — please ask them anything.",
       },
       {
-        q: "Will donating affect my future fertility?",
-        a: "Current medical research has not shown that egg donation reduces future fertility in healthy donors, but every person is different. The clinic's physician will discuss risks with you, and we encourage you to ask questions.",
+        q: "What are the medical risks?",
+        a: "As with any medical procedure, there are some: ovarian hyperstimulation syndrome (OHSS), reactions to medication, and rare complications from the procedure itself. Partner clinics monitor you closely to keep risk low.",
       },
       {
-        q: "Are there medical risks?",
-        a: "Like any medical procedure, there are some risks, including ovarian hyperstimulation syndrome (OHSS), reactions to medication, and rare procedural complications. Partner clinics monitor you closely to minimize risk.",
+        q: "Is the retrieval painful?",
+        a: "It's done under light sedation, so most donors feel nothing during it. Some cramping or bloating afterward is common and usually settles within a few days. The clinic's physician can tell you what to expect in your case.",
       },
       {
-        q: "Can I donate if I'm on birth control?",
-        a: "Often yes. Many types of birth control are compatible, though some (like certain implants or shots) may need to be paused. Tell us what you use in the pre-screen.",
+        q: "Who covers the medical bills?",
+        a: "Every screening, medication, procedure and related insurance policy is paid for. You won't pay anything out of pocket for donation-related medical care.",
       },
       {
-        q: "Is egg donation anonymous?",
-        a: "Most donations are anonymous, though some intended parents request a known or open-ID arrangement. You'll always know the type of arrangement before agreeing, and it will be spelled out in your legal contract.",
+        q: "I use birth control — can I still apply?",
+        a: "Often, yes. Many methods are compatible, though some implants or injections may need pausing. Just tell us what you use in the pre-screen.",
       },
       {
-        q: "Do I need to take time off work or school?",
-        a: "Most monitoring appointments are early in the morning. You'll need to take the retrieval day off, and possibly the day after.",
+        q: "Will I need time away from work or classes?",
+        a: "Monitoring appointments are mostly early in the morning. Plan to take retrieval day off, and possibly the day after.",
       },
       {
-        q: "Can I donate more than once?",
-        a: "Many donors are eligible to donate again, following clinic guidelines and industry recommendations on the total number of cycles.",
+        q: "Will my donation be anonymous?",
+        a: "Most are. Some intended parents ask for a known or open-ID arrangement instead. You'll always know which it is before you agree, and it will be written into your legal contract.",
       },
       {
-        q: "Who pays for medical costs?",
-        a: "All screening, medication, procedures, and related insurance are paid for. You will never pay out of pocket for medical costs related to donation.",
+        q: "Can I donate again later?",
+        a: "Many donors can, within clinic guidelines and industry recommendations on the total number of cycles.",
       },
     ],
   },
   sperm: {
-    title: "Sperm Donation",
+    title: "Sperm donation",
     items: [
       {
-        q: "What are the basic requirements to be a sperm donor?",
-        a: `You should be ${sperm.minAge}–${sperm.maxAge}, at least ${Math.floor(sperm.minHeightInches / 12)}'${sperm.minHeightInches % 12}" tall, a non-smoker, and currently in college or a graduate.`,
+        q: "What is sperm donors' compensation?",
+        a: `${spermComp}. It is paid for your time and commitment once a donation is completed.`,
       },
       {
-        q: "How does sperm donation work with you?",
-        a: "We work like an egg donation agency: you complete a short pre-screen and a full application, talk with a coordinator, and once approved your profile joins our donor database. When a family chooses you, our partner clinic arranges screening and collection.",
+        q: "How does sperm donation work here?",
+        a: "Much like an egg donation agency. You complete a short pre-screen and the full application, talk with a coordinator, and once approved your profile joins our donor database. When a family chooses you, our partner clinic arranges screening and collection.",
       },
       {
-        q: "How are sperm donors compensated?",
-        a: `${spermComp}. Compensation is paid for your time and commitment once a donation is completed.`,
+        q: "Who can become a sperm donor?",
+        a: `The starting guidelines: ${sperm.minAge}–${sperm.maxAge} years old, at least ${Math.floor(sperm.minHeightInches / 12)}'${sperm.minHeightInches % 12}" tall, a non-smoker, and currently in college or a graduate.`,
       },
       {
-        q: "How long does it take to get matched?",
-        a: "It varies. Some donors are matched within a few weeks of approval; for others it can take several months, depending on what families are looking for. Your coordinator will keep you updated, and you can update your availability at any time.",
+        q: "How long might I wait for a match?",
+        a: "It varies. Some donors are matched a few weeks after approval; others wait several months, depending on what families are looking for. Your coordinator keeps you posted, and you can update your availability whenever you like.",
       },
       {
-        q: "What do I need to do before I'm matched?",
-        a: "Just complete your application, a short call with your coordinator, and keep your contact details up to date. There are no clinic visits or samples before a match — medical screening only begins once a family has chosen you.",
+        q: "Is there anything to do while I wait?",
+        a: "Only the essentials: finish your application, have a short call with your coordinator, and keep your contact details current. There are no clinic visits or samples before a match — medical screening begins only once a family has chosen you.",
       },
       {
-        q: "Who performs medical testing and handles samples?",
-        a: `Medical screening, testing and sample handling are ${PARTNER_CLINICS_LINE}. ${SITE.brand} handles recruitment, your application and matching.`,
+        q: "Who carries out the medical testing?",
+        a: `Medical screening, testing and sample handling are ${PARTNER_CLINICS_LINE}. ${SITE.brand} looks after recruitment, your application and matching.`,
       },
       {
-        q: "Why is there a height requirement?",
-        a: "Height and education guidelines reflect what intended-parent families ask for. They do not affect compensation.",
+        q: "Why are there height and education guidelines?",
+        a: "They reflect what intended-parent families ask for. They have no bearing on compensation.",
       },
       {
-        q: "Is sperm donation anonymous?",
-        a: "Arrangements vary — some families request an anonymous donor, others a known or open-ID arrangement. You'll always know the arrangement before agreeing, and it will be in your donor agreement.",
+        q: "Will my donation be anonymous?",
+        a: "That depends on the family — some want an anonymous donor, others a known or open-ID arrangement. You'll know which before you agree, and it will be set out in your donor agreement.",
       },
       {
-        q: "Will I have any legal or financial responsibility for children?",
-        a: "Donations are made under a written donor agreement that generally protects donors from parental rights and obligations. Laws vary by location, so the agreement and our partners will explain the details.",
+        q: "Would I have any responsibility for a child?",
+        a: "Donations are made under a written donor agreement that generally protects donors from parental rights and obligations. Laws differ from place to place, so the agreement and our partners will explain the specifics.",
       },
       {
-        q: "Can I apply if I live outside the United States?",
-        a: "Yes. We work with donors across the U.S. and internationally. Some matches may involve travel, which is arranged and paid for.",
+        q: "I live outside the United States. Can I apply?",
+        a: "Yes. We welcome donors across the U.S. and internationally. If a match involves travel, it is arranged and paid for.",
       },
     ],
   },
@@ -155,9 +155,9 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
 
 /** The 5 questions shown on the home page. */
 export const HOME_FAQ: FaqItem[] = [
+  FAQ.general.items[0]!,
   FAQ.general.items[1]!,
-  FAQ.egg.items[1]!,
-  FAQ.sperm.items[2]!,
-  FAQ.egg.items[4]!,
+  FAQ.egg.items[0]!,
+  FAQ.sperm.items[0]!,
   FAQ.general.items[4]!,
 ];

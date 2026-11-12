@@ -193,7 +193,7 @@ export function SectionForm({
                   {opts.map((o) => (
                     <label
                       key={o}
-                      className="border-border bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft flex min-h-11 cursor-pointer items-center gap-2 rounded-lg border px-3 text-sm"
+                      className="border-field bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border-2 px-3 text-sm has-[:checked]:border-dashed"
                     >
                       <input
                         type={f.kind === "yesno" ? "radio" : "checkbox"}
@@ -253,7 +253,7 @@ export function SectionForm({
           return followUp ? (
             <div
               key={f.name}
-              className="border-primary/30 bg-primary-soft/40 -mt-2 rounded-xl border-l-4 p-4"
+              className="bg-accent-soft -mt-2 rounded-2xl border-2 border-dashed border-[#d6a93b] p-4"
             >
               {control}
             </div>

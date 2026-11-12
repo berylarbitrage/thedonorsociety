@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <Section title="Privacy Policy">
-      <div className="prose-legal max-w-3xl">
-        <p className="border-gold bg-accent-soft border p-3 text-sm font-medium">
+      <div className="prose-legal fabric-card mx-auto max-w-3xl px-6 py-8 md:px-12 md:py-12">
+        <p className="bg-accent-soft rounded-2xl border-2 border-dashed border-[#d6a93b] p-4 font-sans text-sm font-semibold">
           DRAFT — PLACEHOLDER TEXT. This policy must be reviewed by a qualified attorney before
           launch.
         </p>

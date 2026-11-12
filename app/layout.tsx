@@ -1,16 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Jost } from "next/font/google";
+import { Lora, Nunito_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { SITE, siteUrl } from "@/config/site";
 import { CookieBanner } from "@/components/analytics/cookie-banner";
 import { Analytics } from "@/components/analytics/analytics";
 
-const jost = Jost({ subsets: ["latin"], variable: "--font-jost", display: "swap" });
-const bodoni = Bodoni_Moda({
+const lora = Lora({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
-  variable: "--font-bodoni",
+  variable: "--font-lora",
+  display: "swap",
+});
+const nunito = Nunito_Sans({ subsets: ["latin"], variable: "--font-nunito", display: "swap" });
+const pacifico = Pacifico({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-pacifico",
   display: "swap",
 });
 
@@ -21,7 +26,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.brand}`,
   },
   description:
-    "An invitation to become an egg or sperm donor and help a family begin. Compensation for your time, medical costs covered, a dedicated coordinator — U.S. and international donors welcome.",
+    "Egg and sperm donation, taken one careful step at a time: a coordinator beside you, medical costs covered and compensation for your time. Donors in the U.S. and internationally welcome.",
   openGraph: {
     type: "website",
     siteName: SITE.brand,
@@ -31,14 +36,14 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#FAF8F3",
+  themeColor: "#F6EFE2",
   colorScheme: "light",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jost.variable} ${bodoni.variable}`}>
-      <body className="min-h-dvh font-sans antialiased">
+    <html lang="en" className={`${lora.variable} ${nunito.variable} ${pacifico.variable}`}>
+      <body className="min-h-dvh font-serif antialiased">
         {children}
         <CookieBanner />
         <Analytics />

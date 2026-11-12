@@ -302,7 +302,10 @@ export function PrescreenForm({
 
   if (blocked) {
     return (
-      <div role="status" className="bg-card rounded-2xl p-8 text-center shadow-sm">
+      <div
+        role="status"
+        className="fabric-card stitched p-8 text-center [--stitch:var(--sage-deep)]"
+      >
         <h2 className="text-2xl">Thank you for your interest</h2>
         <p className="text-muted mt-3">
           You must be at least {MIN_APPLICANT_AGE} years old to apply to become a donor. We
@@ -328,10 +331,10 @@ export function PrescreenForm({
   });
 
   return (
-    <div className="bg-card rounded-2xl p-5 shadow-sm sm:p-8">
+    <div className="fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10">
       <div className="mb-6">
-        <div className="mb-2 flex flex-col gap-1 text-sm sm:flex-row sm:items-center sm:justify-between">
-          <span className="font-medium">
+        <div className="mb-2 flex flex-col gap-1 font-sans text-sm sm:flex-row sm:items-center sm:justify-between">
+          <span className="font-bold">
             Step {step + 1} of 3 · {STEP_TITLES[step]}
           </span>
           <span className="text-muted flex items-center gap-1">
@@ -344,10 +347,10 @@ export function PrescreenForm({
           aria-valuemin={0}
           aria-valuemax={100}
           aria-label="Application progress"
-          className="bg-muted-bg h-2 overflow-hidden rounded-none"
+          className="bg-muted-bg h-2.5 overflow-hidden rounded-full"
         >
           <div
-            className="bg-primary h-full rounded-none transition-all"
+            className="bg-thread h-full rounded-full transition-all"
             style={{ width: `${pct}%` }}
           />
         </div>
@@ -583,7 +586,7 @@ export function PrescreenForm({
               register={register("previousDonation")}
             />
             {donatedBefore && (
-              <div className="border-primary/30 bg-primary-soft/40 space-y-5 rounded-xl border-l-4 p-4">
+              <div className="bg-accent-soft space-y-5 rounded-2xl border-2 border-dashed border-[#d6a93b] p-4">
                 <p className="text-sm font-medium">Tell us about your previous donations</p>
                 <Field
                   id="prevDonationCount"
@@ -651,7 +654,7 @@ export function PrescreenForm({
                     ).map(([v, l]) => (
                       <label
                         key={v}
-                        className="border-border bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft has-[:checked]:text-primary flex h-11 cursor-pointer items-center justify-center rounded-none border-2 text-sm font-medium has-[:focus-visible]:outline-2"
+                        className="border-field bg-card has-[:checked]:border-primary has-[:checked]:bg-primary-soft has-[:checked]:text-primary flex h-11 cursor-pointer items-center justify-center rounded-xl border-2 font-sans text-sm font-bold has-[:checked]:border-dashed has-[:focus-visible]:outline-2"
                       >
                         <input
                           type="radio"
@@ -799,7 +802,7 @@ export function PrescreenForm({
         )}
 
         {serverError && (
-          <p role="alert" className="bg-destructive/10 text-destructive rounded-lg p-3 text-sm">
+          <p role="alert" className="bg-destructive/10 text-destructive rounded-xl p-3 text-sm">
             {serverError}
           </p>
         )}

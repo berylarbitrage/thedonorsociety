@@ -8,13 +8,13 @@ import { FAQ, type FaqGroup } from "@/content/faq";
 import { faqJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
+  title: "Questions & Answers",
   description:
-    "Answers to common questions about egg donation, sperm donation, compensation, and privacy.",
+    "Careful answers about egg and sperm donation, compensation, matching, medical testing and your privacy.",
   alternates: { canonical: "/faq" },
 };
 
-const ORDER: FaqGroup[] = ["egg", "sperm", "general"];
+const ORDER: FaqGroup[] = ["general", "egg", "sperm"];
 
 export default function FaqPage() {
   const all = ORDER.flatMap((g) => FAQ[g].items);
@@ -23,15 +23,19 @@ export default function FaqPage() {
       <JsonLd data={faqJsonLd(all)} />
       <Section
         eyebrow="FAQ"
-        title="Frequently Asked Questions"
-        intro="Can't find your answer? Contact us any time."
+        title="Questions, answered with care"
+        intro="If something isn't covered here, write to us. We're glad to help."
       >
         <nav
           aria-label="FAQ sections"
-          className="border-border mx-auto mb-14 flex max-w-3xl flex-wrap justify-center border-y"
+          className="mx-auto mb-12 flex max-w-3xl flex-wrap justify-center gap-3"
         >
           {ORDER.map((g) => (
-            <a key={g} href={`#${g}`} className="label-caps hover:text-accent px-4 py-4">
+            <a
+              key={g}
+              href={`#${g}`}
+              className="bg-fabric hover:text-primary rounded-full border-2 border-dashed border-[#cdb894] px-5 py-2.5 font-sans text-sm font-bold transition-colors hover:border-current"
+            >
               {FAQ[g].title}
             </a>
           ))}

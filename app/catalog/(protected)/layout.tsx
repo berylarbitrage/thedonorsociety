@@ -15,7 +15,7 @@ export default async function CatalogLayout({ children }: { children: React.Reac
       <header className="border-border bg-card border-b">
         <div className="mx-auto flex min-h-14 max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-2">
           <div className="flex items-center gap-5">
-            <Link href="/catalog" className="text-primary font-serif font-semibold">
+            <Link href="/catalog" className="font-script text-thread text-xl">
               {SITE.brand} · Donor Catalog
             </Link>
             {staff && (

@@ -62,10 +62,10 @@ export function FullApplication({
             aria-valuemin={0}
             aria-valuemax={100}
             aria-label="Application completion"
-            className="bg-muted-bg h-2 rounded-none"
+            className="bg-muted-bg h-2.5 rounded-full"
           >
             <div
-              className="bg-primary h-full rounded-none transition-all"
+              className="bg-thread h-full rounded-full transition-all"
               style={{ width: `${pct}%` }}
             />
           </div>
@@ -107,7 +107,7 @@ export function FullApplication({
       </aside>
 
       <section
-        className="border-border bg-card border p-5 sm:p-8"
+        className="fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10"
         aria-labelledby="section-heading"
       >
         <h2 id="section-heading" tabIndex={-1} className="text-2xl outline-none">

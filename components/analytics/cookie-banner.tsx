@@ -24,7 +24,7 @@ export function CookieBanner() {
       role="dialog"
       aria-live="polite"
       aria-label="Cookie preferences"
-      className="border-border bg-card fixed inset-x-0 bottom-0 z-[60] border-t p-4 shadow-2xl"
+      className="seam-top bg-card fixed inset-x-0 bottom-0 z-[60] px-4 pt-7 pb-4 shadow-[0_-12px_30px_-18px_rgba(60,42,42,0.5)]"
     >
       <div className="mx-auto flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-foreground text-sm">

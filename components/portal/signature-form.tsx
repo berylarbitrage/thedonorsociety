@@ -69,7 +69,7 @@ export function SignatureForm({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-5">
-      <div className="border-border bg-muted-bg rounded-xl border p-4 text-sm">
+      <div className="bg-muted-bg rounded-2xl border-2 border-dashed border-[#cdb894] p-4 text-sm">
         I certify that the information in this application is true and complete to the best of my
         knowledge. I understand that providing false information may disqualify me, that
         pre-screening does not guarantee acceptance, and that final eligibility is determined by
@@ -102,7 +102,7 @@ export function SignatureForm({
         <Input
           id="signedName"
           autoComplete="name"
-          className="font-serif text-lg italic"
+          className="font-script text-xl"
           aria-invalid={!!errors.signedName}
           {...register("signedName")}
         />

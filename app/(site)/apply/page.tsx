@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroArt } from "@/components/brand/hero-art";
+import { TagLoop } from "@/components/brand/stitch-bits";
+import { Em, Eyebrow } from "@/components/marketing/hero";
 import { SITE, spermComp } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "Apply to Become a Donor",
-  description: `Choose your program: apply to become an egg donor (${SITE.eggComp}) or a sperm donor with ${SITE.brand}. The pre-screen takes about 3 minutes.`,
+  title: "Choose Your Program",
+  description: `Start your application with ${SITE.brand}: egg donation (${SITE.eggComp}) or sperm donation. Either pre-screen takes about 3 minutes.`,
   alternates: { canonical: "/apply" },
 };
 
@@ -17,6 +19,8 @@ const OPTIONS = [
     comp: SITE.eggComp,
     learn: "/egg-donor",
     art: "egg" as const,
+    stitch: "var(--sage-deep)",
+    loop: "var(--sage)",
   },
   {
     href: "/apply/sperm",
@@ -24,41 +28,51 @@ const OPTIONS = [
     comp: spermComp,
     learn: "/sperm-donor",
     art: "sperm" as const,
+    stitch: "var(--thread)",
+    loop: "var(--thread)",
   },
 ];
 
 export default function ApplyChooserPage() {
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 md:py-24">
+    <div className="mx-auto max-w-5xl px-4 py-12 md:py-20">
       <header className="mx-auto max-w-2xl text-center">
-        <p className="label-caps rule-ornament text-accent">Apply</p>
-        <h1 className="mt-6 text-[2.4rem] leading-tight md:text-6xl">
-          Which program are you applying for?
+        <Eyebrow center>Apply</Eyebrow>
+        <h1 className="mt-5 text-[2.3rem] leading-tight md:text-[3.25rem]">
+          Which pattern <Em>is yours?</Em>
         </h1>
-        <p className="text-muted mt-5 text-lg">The pre-screen takes about 3 minutes.</p>
+        <p className="text-muted mt-5 text-lg">
+          Pick the program that fits you. Each pre-screen takes about 3 minutes, and you can read
+          more before you begin.
+        </p>
       </header>
-      <div className="border-ink mt-14 grid border md:grid-cols-2">
-        {OPTIONS.map((o, i) => (
-          <div
-            key={o.href}
-            className={`flex flex-col items-center px-6 py-12 text-center md:px-12 ${i === 0 ? "border-border border-b md:border-r md:border-b-0" : ""}`}
-          >
-            <HeroArt variant={o.art} className="text-ink size-24" />
-            <h2 className="mt-8 text-3xl md:text-4xl">{o.title}</h2>
-            <span className="bg-gold mt-5 block h-px w-8" aria-hidden />
-            <p className="text-muted mt-5 min-h-12 text-sm leading-relaxed">{o.comp}</p>
-            <Link
-              href={o.href}
-              className="bg-ink text-ivory mt-8 inline-flex h-13 w-full items-center justify-center gap-2 px-4 text-[0.72rem] font-medium tracking-[0.2em] uppercase transition-colors hover:bg-[#2b2a27] focus-visible:outline-2 focus-visible:outline-offset-3"
+      <div className="mt-12 grid gap-10 md:grid-cols-2 md:gap-8">
+        {OPTIONS.map((o) => (
+          <div key={o.href} className="relative pt-7">
+            <TagLoop
+              className="absolute top-0 left-1/2 h-10 w-12 -translate-x-1/2"
+              color={o.loop}
+            />
+            <div
+              className="fabric-card stitched flex h-full flex-col items-center px-6 pt-10 pb-9 text-center md:px-10"
+              style={{ ["--stitch" as string]: o.stitch }}
             >
-              Apply as {o.title.toLowerCase()} <ArrowRight className="size-4" aria-hidden />
-            </Link>
-            <Link
-              href={o.learn}
-              className="decoration-gold mt-5 block text-sm underline underline-offset-4"
-            >
-              Learn about the program first
-            </Link>
+              <HeroArt variant={o.art} className="h-auto w-36" />
+              <h2 className="mt-6 text-3xl">{o.title}</h2>
+              <p className="text-muted mt-3 min-h-12 leading-relaxed">{o.comp}</p>
+              <Link
+                href={o.href}
+                className="stitched bg-thread hover:bg-thread-deep mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-[14px] px-4 font-sans font-bold text-white transition-colors [--stitch-inset:6px] [--stitch:rgba(255,255,255,0.85)]"
+              >
+                Apply as {o.title.toLowerCase()} <ArrowRight className="size-4" aria-hidden />
+              </Link>
+              <Link
+                href={o.learn}
+                className="text-primary hover:text-ink mt-5 block rounded font-sans text-sm font-bold underline decoration-dashed underline-offset-4"
+              >
+                Read about this program first
+              </Link>
+            </div>
           </div>
         ))}
       </div>

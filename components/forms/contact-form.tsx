@@ -47,7 +47,11 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate className="relative space-y-5">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      className="fabric-card stitched relative space-y-5 p-7 [--stitch:var(--sage-deep)] md:p-10"
+    >
       <Honeypot {...register("website")} />
       <Field id="name" label="Your name" required error={errors.name?.message}>
         <Input id="name" autoComplete="name" aria-invalid={!!errors.name} {...register("name")} />

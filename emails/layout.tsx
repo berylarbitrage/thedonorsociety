@@ -8,38 +8,36 @@ export function EmailLayout({ preview, children }: { preview: string; children: 
       <Preview>{preview}</Preview>
       <Body
         style={{
-          backgroundColor: "#FAF8F3",
-          fontFamily: "Jost, Helvetica, Arial, sans-serif",
-          color: "#121212",
+          backgroundColor: "#F6EFE2",
+          fontFamily: "Lora, Georgia, 'Times New Roman', serif",
+          color: "#3C2A2A",
         }}
       >
         <Container style={{ maxWidth: 560, margin: "0 auto", padding: "32px 24px" }}>
           <Text
             style={{
-              fontSize: 14,
-              fontWeight: 500,
-              color: "#121212",
-              letterSpacing: "0.3em",
-              textTransform: "uppercase",
+              fontSize: 26,
+              fontFamily: "Pacifico, 'Brush Script MT', cursive",
+              color: "#C0485B",
               textAlign: "center",
-              borderBottom: "1px solid #A8834A",
-              paddingBottom: 16,
+              borderBottom: "2px dashed #C0485B",
+              paddingBottom: 14,
             }}
           >
             {SITE.brand}
           </Text>
           <Section
             style={{
-              backgroundColor: "#FDFCF9",
-              border: "1px solid #DDD6C8",
-              borderRadius: 0,
+              backgroundColor: "#FFFAF2",
+              border: "2px dashed #8AA37F",
+              borderRadius: 18,
               padding: 24,
             }}
           >
             {children}
           </Section>
-          <Hr style={{ borderColor: "#DDD6C8", margin: "24px 0" }} />
-          <Text style={{ fontSize: 12, color: "#6B665E" }}>
+          <Hr style={{ borderColor: "#DCCDB4", borderStyle: "dashed", margin: "24px 0" }} />
+          <Text style={{ fontSize: 12, color: "#6B5450" }}>
             {SITE.brand} · {SITE.contactEmail} · {SITE.contactPhone}
             <br />
             {DISCLAIMER}
@@ -51,14 +49,14 @@ export function EmailLayout({ preview, children }: { preview: string; children: 
 }
 
 export const button = {
-  backgroundColor: "#121212",
-  color: "#FAF8F3",
-  borderRadius: 0,
+  backgroundColor: "#C0485B",
+  color: "#FFFFFF",
+  borderRadius: 14,
+  border: "2px dashed #F3C6CE",
   padding: "14px 28px",
-  fontWeight: 500,
-  letterSpacing: "0.18em",
-  textTransform: "uppercase",
-  fontSize: 12,
+  fontWeight: 700,
+  fontFamily: "'Nunito Sans', Helvetica, Arial, sans-serif",
+  fontSize: 15,
   textDecoration: "none",
   display: "inline-block",
 } as const;
