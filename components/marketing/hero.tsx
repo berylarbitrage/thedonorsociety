@@ -1,8 +1,8 @@
 import { HeroArt } from "@/components/brand/hero-art";
 
 /**
- * Two-column hero: words on the left, an embroidery hoop on the right.
- * On small screens the hoop sits above the headline, smaller.
+ * Two-column hero: words on the left, an embroidered fabric swatch on the right.
+ * On small screens the artwork sits above the headline, smaller.
  */
 export function Hero({
   eyebrow,
