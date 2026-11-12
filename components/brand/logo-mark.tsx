@@ -1,42 +1,36 @@
 /**
- * The Donor Society mark: a heart sewn in red running stitch, with a small
- * needle drawing the thread through. Pure inline SVG, original artwork.
+ * The Donor Society mark ("two threads, one heart"): two running-stitch
+ * threads, one red and one sage, each ending in a small head, curve into a
+ * heart around a mustard egg with a thin ring. Pure inline SVG, original artwork.
  */
 export function LogoMark({ className, title }: { className?: string; title?: string }) {
   return (
     <svg
-      viewBox="0 0 40 40"
+      viewBox="10 14 88 86"
       className={className}
       role={title ? "img" : undefined}
       aria-hidden={title ? undefined : true}
       fill="none"
-      strokeLinecap="round"
-      strokeLinejoin="round"
     >
       {title && <title>{title}</title>}
       <path
-        d="M17 34 C 7.5 27, 4 20, 7.5 14.6 C 10.4 10.4, 15.4 11.2, 17 15.4 C 18.6 11.2, 23.6 10.4, 26.5 14.6 C 30 20, 26.5 27, 17 34 Z"
+        d="M54 92 C 18 70, 18 34, 38 28"
         stroke="var(--thread)"
-        strokeWidth="2.6"
-        strokeDasharray="3.4 2.6"
+        strokeWidth="3"
+        strokeDasharray="6 4"
+        strokeLinecap="round"
       />
-      {/* needle */}
-      <path d="M23.5 18.5 L36 6" stroke="var(--ink)" strokeWidth="1.7" />
-      <ellipse
-        cx="34.4"
-        cy="7.6"
-        rx="1.9"
-        ry="0.85"
-        transform="rotate(-45 34.4 7.6)"
-        stroke="var(--ink)"
-        strokeWidth="0.9"
-      />
-      {/* thread through the eye */}
       <path
-        d="M34.6 7.4 C 38.5 10.5, 36.5 15.5, 31 15.2"
-        stroke="var(--thread)"
-        strokeWidth="1.2"
+        d="M54 92 C 90 70, 90 34, 70 28"
+        stroke="var(--sage)"
+        strokeWidth="3"
+        strokeDasharray="6 4"
+        strokeLinecap="round"
       />
+      <ellipse cx="40" cy="28" rx="7" ry="5" fill="var(--thread)" transform="rotate(-20 40 28)" />
+      <ellipse cx="68" cy="28" rx="7" ry="5" fill="var(--sage)" transform="rotate(20 68 28)" />
+      <circle cx="54" cy="56" r="15.5" stroke="#c99a35" strokeWidth="1.5" />
+      <circle cx="54" cy="56" r="12" fill="var(--knot)" />
     </svg>
   );
 }

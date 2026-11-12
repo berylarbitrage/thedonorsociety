@@ -20,7 +20,7 @@ export function EmailLayout({ preview, children }: { preview: string; children: 
               fontFamily: "Pacifico, 'Brush Script MT', cursive",
               color: "#C0485B",
               textAlign: "center",
-              borderBottom: "2px dashed #C0485B",
+              borderBottom: "2px dashed #8AA37F",
               paddingBottom: 14,
             }}
           >
