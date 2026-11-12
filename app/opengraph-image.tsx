@@ -15,8 +15,8 @@ const MUTED = "#6B5450";
 const SAGE_MARK = "#8AA37F";
 const KNOT = "#E8B84A";
 
-// Two-thread heart mark (T12), drawn as inline SVG.
-const MARK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 14 88 86"><path d="M54 92 C 18 70, 18 34, 38 28" fill="none" stroke="${THREAD}" stroke-width="3" stroke-dasharray="6 4" stroke-linecap="round"/><path d="M54 92 C 90 70, 90 34, 70 28" fill="none" stroke="${SAGE_MARK}" stroke-width="3" stroke-dasharray="6 4" stroke-linecap="round"/><ellipse cx="40" cy="28" rx="7" ry="5" fill="${THREAD}" transform="rotate(-20 40 28)"/><ellipse cx="68" cy="28" rx="7" ry="5" fill="${SAGE_MARK}" transform="rotate(20 68 28)"/><circle cx="54" cy="56" r="15.5" fill="none" stroke="#C99A35" stroke-width="1.5"/><circle cx="54" cy="56" r="12" fill="${KNOT}"/></svg>`;
+// Hoop-and-egg mark (T9), drawn as inline SVG.
+const MARK = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="6 2 96 100"><circle cx="54" cy="55" r="42" fill="${FABRIC}" stroke="#C49A6C" stroke-width="7"/><rect x="49" y="6" width="10" height="9" rx="2" fill="#A77B4F"/><circle cx="62" cy="58" r="15.5" fill="none" stroke="${THREAD}" stroke-width="3" stroke-dasharray="1 5"/><circle cx="62" cy="58" r="6" fill="${KNOT}"/><g transform="translate(40 42) rotate(30) scale(0.9)"><path d="M-6 0 C -11 -6, -16 6, -22 0 S -33 -6, -40 0" fill="none" stroke="${THREAD}" stroke-width="2.6" stroke-linecap="round" stroke-dasharray="4 4"/><ellipse cx="0" cy="0" rx="7.5" ry="5.4" fill="${THREAD}"/></g></svg>`;
 
 export default function OgImage() {
   return new ImageResponse(
@@ -45,8 +45,8 @@ export default function OgImage() {
         <div style={{ display: "flex", alignItems: "center" }}>
           <img
             alt=""
-            width={170}
-            height={164}
+            width={168}
+            height={175}
             src={`data:image/svg+xml;utf8,${encodeURIComponent(MARK)}`}
           />
           <div
