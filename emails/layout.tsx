@@ -38,7 +38,7 @@ export function EmailLayout({ preview, children }: { preview: string; children: 
           </Section>
           <Hr style={{ borderColor: "#DCCDB4", borderStyle: "dashed", margin: "24px 0" }} />
           <Text style={{ fontSize: 12, color: "#6B5450" }}>
-            {SITE.brand} · {SITE.contactEmail} · {SITE.contactPhone}
+            {SITE.brand} · {SITE.contactEmail}
             <br />
             {DISCLAIMER}
           </Text>

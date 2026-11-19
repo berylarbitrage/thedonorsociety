@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Section } from "@/components/marketing/section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { SITE } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Get in Touch",
-  description: `Wondering about donating? Write or call ${SITE.brand} and a real person will reply.`,
+  description: `Wondering about donating? Write to ${SITE.brand} and a real person will reply.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -26,15 +26,6 @@ export default function ContactPage() {
               className="text-primary rounded break-all underline decoration-dashed underline-offset-4"
             >
               {SITE.contactEmail}
-            </a>
-          </p>
-          <p className="flex items-center gap-3">
-            <Phone className="text-thread size-5 shrink-0" aria-hidden />
-            <a
-              href={`tel:${SITE.contactPhone.replace(/\D/g, "")}`}
-              className="text-primary rounded break-all underline decoration-dashed underline-offset-4"
-            >
-              {SITE.contactPhone}
             </a>
           </p>
           <p className="text-muted text-sm">{SITE.serviceArea}.</p>

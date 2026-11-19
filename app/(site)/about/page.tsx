@@ -31,7 +31,7 @@ const BELIEFS: { icon: SamplerIcon; title: string; body: string }[] = [
   {
     icon: "worldwide",
     title: "A real person beside you.",
-    body: "Each donor has their own coordinator — someone you can call or text.",
+    body: "Each donor has their own coordinator — someone you can message or email anytime.",
   },
 ];
 
