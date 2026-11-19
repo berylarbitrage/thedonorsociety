@@ -1,5 +1,5 @@
 import { ELIGIBILITY } from "@/config/eligibility";
-import { PARTNER_CLINICS_LINE, SITE, spermComp } from "@/config/site";
+import { PARTNER_CLINICS_LINE, SITE } from "@/config/site";
 
 export interface FaqItem {
   q: string;
@@ -17,7 +17,7 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
     items: [
       {
         q: "How much time does the first step take?",
-        a: "The online pre-screen takes about 3 minutes. It asks only the basics — we won't ask for your Social Security number, medical records or photos at this stage.",
+        a: "The online pre-screen takes about 3 minutes. It asks only the basics, plus 3–5 photos of yourself — we won't ask for your Social Security number or medical records at this stage.",
       },
       {
         q: "What happens once I've sent the pre-screen?",
@@ -61,12 +61,12 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
     title: "Egg donation",
     items: [
       {
-        q: "What is egg donors' compensation?",
-        a: `Typically ${SITE.eggComp}, for your time and commitment. Medical, travel, legal and insurance costs are all covered on top of that.`,
+        q: "What do egg donors get paid?",
+        a: "Your compensation depends on how you're matched. If your eggs are matched through an egg bank, you'll typically receive $8,000 – $10,000 per cycle. If you're matched directly with a family, compensation starts at $10,000 per cycle. Experienced donors receive higher compensation than first-time donors. Compensation is paid for your time and commitment, and all medical, travel, legal and insurance costs are covered on top of that.",
       },
       {
-        q: "What do you look for in an egg donor?",
-        a: `The starting guidelines: ${egg.minAge}–${egg.maxAge} years old, a BMI under ${egg.maxBmi}, a non-smoker, regular menstrual cycles, and at least a high school diploma.`,
+        q: "Can I be an egg donor?",
+        a: `Most of our donors are ${egg.minAge}–${egg.maxAge}, have a BMI under ${egg.maxBmi}, don't smoke or vape, have regular cycles, have no significant medical conditions, and are currently in college or have a college degree. Not sure you qualify? Take our 3-minute pre-screen to find out. Final eligibility is confirmed by our partner clinic.`,
       },
       {
         q: "How long is the journey from start to finish?",
@@ -93,16 +93,16 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
         a: "Often, yes. Many methods are compatible, though some implants or injections may need pausing. Just tell us what you use in the pre-screen.",
       },
       {
-        q: "Will I need time away from work or classes?",
-        a: "Monitoring appointments are mostly early in the morning. Plan to take retrieval day off, and possibly the day after.",
+        q: "Will I miss work or class?",
+        a: "Probably some, so plan ahead. Donation is a real commitment. If you live near the clinic, most monitoring appointments are early in the morning, and you should take retrieval day and the day after off. If you're a travel donor, plan to be away for about 7–14 days around stimulation and retrieval. Your coordinator will give you a schedule in advance so you can arrange time off from work or school.",
       },
       {
         q: "Is my identity kept confidential?",
         a: "Most are. Some intended parents ask for a known or open-ID arrangement instead. You'll always know which it is before you agree, and it will be written into your legal contract.",
       },
       {
-        q: "Can I donate again later?",
-        a: "Many donors can, within clinic guidelines and industry recommendations on the total number of cycles.",
+        q: "Can I donate again?",
+        a: "Yes, many donors do! If your first cycle goes well and the clinic clears you medically, you can donate again. Following American Society for Reproductive Medicine (ASRM) guidelines, we limit donors to a maximum of six donation cycles. Experienced donors also receive higher compensation.",
       },
     ],
   },
@@ -110,16 +110,16 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
     title: "Sperm donation",
     items: [
       {
-        q: "What is sperm donors' compensation?",
-        a: `${spermComp}. It is paid for your time and commitment once a donation is completed.`,
+        q: "What do sperm donors get paid?",
+        a: "You're paid for each completed donation, and the amount depends on the program. Usually, from $3,000 and up to $20,000. Compensation is for your time and commitment, and all medical screening and testing is covered at no cost to you. Your coordinator will explain the exact amount before you sign your donor agreement.",
       },
       {
         q: "How does sperm donation work here?",
         a: "Much like an egg donation agency. You complete a short pre-screen and the full application, talk with a coordinator, and once approved your profile joins our donor database. When a family chooses you, our partner clinic arranges screening and collection.",
       },
       {
-        q: "What do you look for in a sperm donor?",
-        a: `The starting guidelines: ${sperm.minAge}–${sperm.maxAge} years old, at least ${Math.floor(sperm.minHeightInches / 12)}'${sperm.minHeightInches % 12}" tall, a non-smoker, and currently in college or a graduate.`,
+        q: "Can I be a sperm donor?",
+        a: `Most of our donors are ${sperm.minAge}–${sperm.maxAge}, at least ${Math.floor(sperm.minHeightInches / 12)}'${sperm.minHeightInches % 12}" tall, have a BMI under ${sperm.maxBmi}, don't smoke or vape, and are currently in college or have a college degree. Not sure you qualify? Take our 3-minute pre-screen to find out. Final eligibility is confirmed by our partner clinic.`,
       },
       {
         q: "How long might I wait for a match?",
@@ -134,8 +134,8 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
         a: `Medical screening, testing and sample handling are ${PARTNER_CLINICS_LINE}. ${SITE.brand} looks after recruitment, your application and matching.`,
       },
       {
-        q: "Why are there height and education guidelines?",
-        a: "They reflect what intended-parent families ask for. They have no bearing on compensation.",
+        q: "Why are there height and education requirements?",
+        a: "These guidelines reflect what intended parents most often look for when choosing a donor, so they help your profile get matched. They're about matching only, and they don't affect your compensation.",
       },
       {
         q: "Is my identity kept confidential?",
@@ -146,8 +146,8 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
         a: "Donations are made under a written donor agreement that generally protects donors from parental rights and obligations. Laws differ from place to place, so the agreement and our partners will explain the specifics.",
       },
       {
-        q: "I live outside the United States. Can I apply?",
-        a: "Yes. We welcome donors across the U.S. and internationally. If a match involves travel, it is arranged and paid for.",
+        q: "I live outside the U.S. Can I apply?",
+        a: "Yes! We work with donors across the U.S. and internationally. If you live outside the U.S., you'll need a valid U.S. visa to donate here. If a match involves travel, we arrange it and cover the cost.",
       },
     ],
   },

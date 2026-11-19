@@ -3,10 +3,17 @@
  * and the /api/apply route so validation is identical on both sides.
  */
 import { z } from "zod";
-import { EDUCATION_LEVELS, type DonorType } from "@/config/eligibility";
+import { EDUCATION_LEVELS, SCHOOL_LEVELS, type DonorType } from "@/config/eligibility";
 import { US_STATE_CODES } from "@/config/us-states";
 import { COUNTRIES, DEFAULT_COUNTRY, isUnitedStates } from "@/config/countries";
 import { ageOn, parseIsoDate } from "@/lib/dates";
+import { PHOTO_LIMITS, VIDEO_LIMITS } from "@/lib/full-app";
+
+/** How many extra schools an applicant can add besides the first one. */
+export const MAX_OTHER_SCHOOLS = 4;
+
+/** Most previous donations an applicant can list. */
+export const MAX_PREV_DONATIONS = 20;
 
 export const HOW_HEARD = ["Google", "Instagram", "TikTok", "Facebook", "Friend", "Other"] as const;
 export const BIRTH_CONTROL = ["None", "Pill", "IUD", "Implant", "Shot", "Other"] as const;
@@ -63,15 +70,36 @@ export const step1Schema = z.object({
   city: optText(80),
   postalCode: optText(20),
   education: z.enum(EDUCATION_LEVELS, { error: "Please select your education level" }),
+  school: z.string().trim().min(1, "Please enter your school name").max(120),
+  /** Optional: what you do (job, studies) and anything else about yourself. */
+  occupation: optText(120),
+  aboutMe: optText(1500),
+  schoolLevel: z.enum(SCHOOL_LEVELS, { error: "Please choose your level of study at this school" }),
+  /** Additional schools (optional; rows without a name are ignored). */
+  otherSchools: z
+    .array(
+      z.object({
+        name: z.string().trim().max(120),
+        level: z.enum(SCHOOL_LEVELS).or(z.literal("")),
+      }),
+    )
+    .max(MAX_OTHER_SCHOOLS)
+    .optional(),
   howHeard: z.enum(HOW_HEARD).optional().or(z.literal("")),
 });
 
 /** Follow-up questions when "Have you donated before?" is Yes. */
 export const previousDonationSchema = {
-  prevDonationCount: num(1, 50, "number of donations").optional(),
-  prevDonationWhen: optText(300),
-  prevEggsRetrieved: optText(300), // egg only
-  prevPregnancyKnown: z.enum(YES_NO_UNKNOWN).optional(),
+  /**
+   * One row per previous donation: its calendar date (YYYY-MM-DD) and, for egg
+   * donors, about how many eggs were retrieved that time. Count = list length.
+   */
+  prevDonations: z
+    .array(z.object({ date: z.string().max(10), eggs: z.string().trim().max(40).optional() }))
+    .max(MAX_PREV_DONATIONS)
+    .optional(),
+  // nullish: an unanswered radio group is null; the "Please choose" message comes from conditionalIssues.
+  prevPregnancyKnown: z.enum(YES_NO_UNKNOWN).nullish(),
   prevAgency: optText(300),
 };
 
@@ -125,11 +153,20 @@ export function conditionalIssues(type: DonorType, v: Values): Record<string, st
     if (blank(v.region)) out.region = "Please enter your state or province";
     if (blank(v.city)) out.city = "Please enter your city";
   }
+  const extraSchools = (v.otherSchools as { name?: string; level?: string }[] | undefined) ?? [];
+  if (extraSchools.some((s) => s?.name?.trim() && !s.level))
+    out.otherSchools = "Please choose a level of study for each school";
   if (v.previousDonation === "yes") {
-    if (blank(v.prevDonationCount)) out.prevDonationCount = "Please enter how many times";
-    if (blank(v.prevDonationWhen)) out.prevDonationWhen = "Please tell us roughly when";
-    if (type === "egg" && blank(v.prevEggsRetrieved))
-      out.prevEggsRetrieved = "Please enter an approximate number (or 'Not sure')";
+    const rows = (v.prevDonations as { date?: string; eggs?: string }[] | undefined) ?? [];
+    const today = new Date().toISOString().slice(0, 10);
+    if (rows.length === 0) out.prevDonations = "Please add at least one donation";
+    else if (rows.some((r) => !parseIsoDate(r?.date ?? "")))
+      out.prevDonations = "Please pick a date for each donation";
+    else if (rows.some((r) => (r?.date ?? "") > today))
+      out.prevDonations = "Donation dates can't be in the future";
+    else if (type === "egg" && rows.some((r) => !r?.eggs?.trim()))
+      out.prevDonations =
+        "Please enter about how many eggs were retrieved each time (or 'Not sure')";
     if (blank(v.prevPregnancyKnown)) out.prevPregnancyKnown = "Please choose an option";
     if (blank(v.prevAgency)) out.prevAgency = "Please enter the agency or clinic";
   }
@@ -180,7 +217,9 @@ export function pruneHidden(type: DonorType, v: Application): Application {
   if (out.previousDonation !== "yes") {
     for (const k of Object.keys(previousDonationSchema)) delete out[k];
   }
-  if (type !== "egg") delete out.prevEggsRetrieved;
+  if (type !== "egg" && Array.isArray(out.prevDonations)) {
+    out.prevDonations = (out.prevDonations as { date: string }[]).map(({ date }) => ({ date }));
+  }
   return out as Application;
 }
 
@@ -190,4 +229,29 @@ export const applyRequestSchema = z.object({
   data: z.record(z.string(), z.unknown()),
   turnstileToken: z.string().optional(),
   website: z.string().optional(), // honeypot — must be empty
+  /** Photos the browser will upload once the application is stored (3–5). */
+  photos: z
+    .array(
+      z.object({
+        contentType: z.enum(PHOTO_LIMITS.mimeTypes),
+        size: z
+          .number()
+          .int()
+          .positive()
+          .max(PHOTO_LIMITS.maxBytes, "Photos must be 5 MB or smaller"),
+      }),
+    )
+    .min(PHOTO_LIMITS.minCount, `Please add at least ${PHOTO_LIMITS.minCount} photos`)
+    .max(PHOTO_LIMITS.maxCount, `Please add no more than ${PHOTO_LIMITS.maxCount} photos`),
+  /** Optional short video introducing yourself. */
+  video: z
+    .object({
+      contentType: z.enum(VIDEO_LIMITS.mimeTypes),
+      size: z
+        .number()
+        .int()
+        .positive()
+        .max(VIDEO_LIMITS.maxBytes, "Videos must be 50 MB or smaller"),
+    })
+    .optional(),
 });

@@ -211,6 +211,12 @@ export default async function ApplicationDetailPage({
                   `${app.date_of_birth} (age ${ageOn(app.date_of_birth, new Date())})`,
                 ],
                 ["Education", app.education],
+                ["Schools", schoolsOf(app.prescreen_details)],
+                [
+                  "Work / occupation",
+                  (app.prescreen_details as { occupation?: string } | null)?.occupation,
+                ],
+                ["About them", (app.prescreen_details as { aboutMe?: string } | null)?.aboutMe],
                 [
                   "Height",
                   app.height_in ? `${Math.floor(app.height_in / 12)}'${app.height_in % 12}"` : null,
@@ -261,7 +267,14 @@ export default async function ApplicationDetailPage({
               <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {photos.map((p) => (
                   <li key={p.id}>
-                    {signed.get(p.storage_path) ? (
+                    {p.kind === "video" && signed.get(p.storage_path) ? (
+                      <video
+                        src={signed.get(p.storage_path)}
+                        controls
+                        preload="metadata"
+                        className="aspect-square w-full rounded-lg bg-black object-contain"
+                      />
+                    ) : signed.get(p.storage_path) ? (
                       <a href={signed.get(p.storage_path)} target="_blank" rel="noreferrer">
                         <Image
                           src={signed.get(p.storage_path)!}
@@ -351,13 +364,37 @@ export default async function ApplicationDetailPage({
 }
 
 /** Follow-up answers to "Have you donated before?" (stored in prescreen_details). */
+function schoolsOf(details: unknown): string[] | null {
+  type School = string | { name: string; level?: string };
+  const d = details as { schools?: School[]; school?: string } | null;
+  if (d?.schools?.length)
+    return d.schools.map((s) =>
+      typeof s === "string" ? s : s.level ? `${s.name} (${s.level})` : s.name,
+    );
+  return d?.school ? [d.school] : null;
+}
+
 function previousDonationRows(details: unknown): [string, unknown][] {
   const p = (details as { previousDonation?: Record<string, unknown> } | null)?.previousDonation;
   if (!p) return [];
   const pregnancy = { yes: "Yes", no: "No", unknown: "Unknown" } as Record<string, string>;
   return [
     ["· Times donated", p.count],
-    ["· When", p.when],
+    ...(Array.isArray(p.donations)
+      ? ([
+          [
+            "· Donations",
+            (p.donations as { date: string; eggsRetrieved?: string | null }[]).map((r) =>
+              r.eggsRetrieved !== undefined
+                ? `${r.date} — eggs retrieved: ${r.eggsRetrieved ?? "?"}`
+                : r.date,
+            ),
+          ],
+        ] as [string, unknown][])
+      : ([["· When", Array.isArray(p.dates) ? (p.dates as string[]).join(", ") : p.when]] as [
+          string,
+          unknown,
+        ][])),
     ...(p.eggsRetrieved !== undefined
       ? ([["· Eggs retrieved", p.eggsRetrieved]] as [string, unknown][])
       : []),

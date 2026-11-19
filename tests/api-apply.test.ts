@@ -61,6 +61,8 @@ function eggData(over: Record<string, unknown> = {}) {
     state: "IL",
     zip: "60601",
     education: "Bachelor's",
+    school: "University of Illinois",
+    schoolLevel: "Bachelor's degree",
     howHeard: "Google",
     heightFt: 5,
     heightIn: 6,
@@ -79,8 +81,11 @@ function eggData(over: Record<string, unknown> = {}) {
     ...over,
   };
 }
+const PHOTOS = [1, 2, 3].map(() => ({ contentType: "image/jpeg", size: 1000 }));
 function req(body: unknown) {
   ipCounter++;
+  // Every pre-screen sends 3–5 photos unless a test says otherwise.
+  if (body && typeof body === "object" && !("photos" in body)) body = { ...body, photos: PHOTOS };
   return new Request("http://localhost/api/apply", {
     method: "POST",
     headers: { "content-type": "application/json", "x-forwarded-for": `10.0.0.${ipCounter}` },
@@ -100,11 +105,95 @@ beforeEach(() => {
 
 // ---- Tests ---------------------------------------------------------------
 describe("POST /api/apply", () => {
+  it("stores every school the applicant lists, skipping blank extra rows", async () => {
+    const res = await POST(
+      req({
+        donorType: "egg",
+        data: eggData({
+          otherSchools: [
+            { name: "Harvard University", level: "Master's degree" },
+            { name: "  ", level: "" },
+            { name: "MIT", level: "Doctorate (PhD)" },
+          ],
+        }),
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(apps()[0]!.prescreen_details).toEqual({
+      schools: [
+        { name: "University of Illinois", level: "Bachelor's degree" },
+        { name: "Harvard University", level: "Master's degree" },
+        { name: "MIT", level: "Doctorate (PhD)" },
+      ],
+    });
+  });
+
+  it("requires 3–5 photos", async () => {
+    for (const photos of [PHOTOS.slice(0, 2), [...PHOTOS, ...PHOTOS]]) {
+      const res = await POST(req({ donorType: "egg", data: eggData(), photos }));
+      expect(res.status).toBe(400);
+      expect(apps()).toHaveLength(0);
+    }
+  });
+
+  it("returns one signed upload url per photo, inside the application's folder", async () => {
+    const res = await POST(req({ donorType: "egg", data: eggData() }));
+    const body = (await res.json()) as {
+      applicationId: string;
+      uploads: { path: string; token: string }[];
+    };
+    expect(body.uploads).toHaveLength(3);
+    for (const u of body.uploads) {
+      expect(u.path).toMatch(new RegExp(`^${body.applicationId}/[0-9a-f-]{36}\\.jpg$`));
+      expect(u.token).toBeTruthy();
+    }
+  });
+
+  it("requires a level for the first school and for each extra school with a name", async () => {
+    for (const [over, path] of [
+      [{ schoolLevel: "" }, "schoolLevel"],
+      [{ otherSchools: [{ name: "Harvard University", level: "" }] }, "otherSchools"],
+    ] as const) {
+      const res = await POST(req({ donorType: "egg", data: eggData(over) }));
+      expect(res.status).toBe(400);
+      const paths = (await res.json()).issues.map((i: { path: string }) => i.path);
+      expect(paths).toEqual([path]);
+    }
+    expect(apps()).toHaveLength(0);
+  });
+
+  it("signs an extra upload url for an optional video and stores the about-me answers", async () => {
+    const res = await POST(
+      req({
+        donorType: "egg",
+        data: eggData({ occupation: " Nursing student ", aboutMe: "I love hiking." }),
+        video: { contentType: "video/quicktime", size: 20_000_000 },
+      }),
+    );
+    const body = (await res.json()) as { videoUpload?: { path: string } };
+    expect(body.videoUpload?.path).toMatch(/\.mov$/);
+    expect(apps()[0]!.prescreen_details).toMatchObject({
+      occupation: "Nursing student",
+      aboutMe: "I love hiking.",
+    });
+  });
+
+  it("rejects videos over 50 MB or of the wrong type", async () => {
+    for (const video of [
+      { contentType: "video/mp4", size: 60 * 1024 * 1024 },
+      { contentType: "application/pdf", size: 1000 },
+    ]) {
+      const res = await POST(req({ donorType: "egg", data: eggData(), video }));
+      expect(res.status).toBe(400);
+    }
+    expect(apps()).toHaveLength(0);
+  });
+
   it("stores an eligible application and sends eligible + admin emails", async () => {
     const res = await POST(req({ donorType: "egg", data: eggData() }));
     expect(res.status).toBe(200);
     // New applicant: signed in and sent straight on to the full application.
-    expect(await res.json()).toEqual({
+    expect(await res.json()).toMatchObject({
       ok: true,
       eligible: true,
       continueUrl: "/portal/application?welcome=1",
@@ -131,7 +220,7 @@ describe("POST /api/apply", () => {
   it("never auto-signs-in an existing account (email backup link only)", async () => {
     existingUser = true;
     const res = await POST(req({ donorType: "egg", data: eggData() }));
-    expect(await res.json()).toEqual({ ok: true, eligible: true });
+    expect(await res.json()).toMatchObject({ ok: true, eligible: true });
     expect(signedIn).toEqual([]);
     for (const t of afterTasks) await t();
     expect(sent[0]).toMatchObject({ to: "jane@example.com" });
@@ -183,22 +272,17 @@ describe("POST /api/apply", () => {
     );
     expect(missing.status).toBe(400);
     const paths = (await missing.json()).issues.map((i: { path: string }) => i.path).sort();
-    expect(paths).toEqual([
-      "prevAgency",
-      "prevDonationCount",
-      "prevDonationWhen",
-      "prevEggsRetrieved",
-      "prevPregnancyKnown",
-    ]);
+    expect(paths).toEqual(["prevAgency", "prevDonations", "prevPregnancyKnown"]);
     const ok = await POST(
       req({
         donorType: "egg",
         data: eggData({
           email: "jo@example.com",
           previousDonation: "yes",
-          prevDonationCount: 2,
-          prevDonationWhen: "2022 and 2024",
-          prevEggsRetrieved: "about 15 each",
+          prevDonations: [
+            { date: "2024-03-15", eggs: "18" },
+            { date: "2022-06-01", eggs: "about 12" },
+          ],
           prevPregnancyKnown: "unknown",
           prevAgency: "Sample Fertility Clinic",
         }),
@@ -206,10 +290,13 @@ describe("POST /api/apply", () => {
     );
     expect(ok.status).toBe(200);
     expect(apps()[0]!.prescreen_details).toEqual({
+      schools: [{ name: "University of Illinois", level: "Bachelor's degree" }],
       previousDonation: {
         count: 2,
-        when: "2022 and 2024",
-        eggsRetrieved: "about 15 each",
+        donations: [
+          { date: "2022-06-01", eggsRetrieved: "about 12" },
+          { date: "2024-03-15", eggsRetrieved: "18" },
+        ],
         pregnancyKnown: "unknown",
         agencyOrClinic: "Sample Fertility Clinic",
       },
@@ -218,7 +305,7 @@ describe("POST /api/apply", () => {
 
   it("stores an ineligible application with reasons", async () => {
     const res = await POST(req({ donorType: "egg", data: eggData({ smoker: "yes" }) }));
-    expect(await res.json()).toEqual({ ok: true, eligible: false });
+    expect(await res.json()).toMatchObject({ ok: true, eligible: false });
     expect(apps()[0]).toMatchObject({ eligible: false, fail_reasons: ["smoker"] });
     for (const t of afterTasks) await t();
     expect(sent[0]!.subject).toMatch(/Thank you/);
@@ -311,6 +398,29 @@ describe("POST /api/apply", () => {
     for (let i = 0; i < 11; i++) statuses.push((await POST(mk())).status);
     expect(statuses.slice(0, 10).every((s) => s === 400)).toBe(true);
     expect(statuses[10]).toBe(429);
+  });
+
+  it("rejects donation dates that are blank or in the future", async () => {
+    for (const [dates, msg] of [
+      [[""], "Please pick a date for each donation"],
+      [["2999-01-01"], "Donation dates can't be in the future"],
+    ] as const) {
+      const res = await POST(
+        req({
+          donorType: "sperm",
+          data: eggData({
+            email: "x@example.com",
+            previousDonation: "yes",
+            prevDonations: dates.map((date) => ({ date })),
+            prevPregnancyKnown: "no",
+            prevAgency: "Clinic",
+          }),
+        }),
+      );
+      expect(res.status).toBe(400);
+      const issues = (await res.json()).issues as { path: string; message: string }[];
+      expect(issues.find((i) => i.path === "prevDonations")?.message).toBe(msg);
+    }
   });
 
   it("returns a diagnostic reference when the database fails", async () => {

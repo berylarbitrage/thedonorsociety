@@ -8,26 +8,41 @@ export const EDUCATION_LEVELS = [
   "Currently in college",
   "Bachelor's",
   "Graduate",
+  "Doctorate (PhD)",
 ] as const;
 export type EducationLevel = (typeof EDUCATION_LEVELS)[number];
 
+/** Level of study at each school the applicant lists in the pre-screen. */
+export const SCHOOL_LEVELS = [
+  "Associate degree",
+  "Bachelor's degree",
+  "Master's degree",
+  "Doctorate (PhD)",
+  "Professional degree (MD, JD, etc.)",
+  "Other / non-degree",
+] as const;
+
 export const ELIGIBILITY = {
   egg: {
-    minAge: 21,
-    maxAge: 31,
-    maxBmi: 28,
+    minAge: 20,
+    maxAge: 29,
+    minBmi: 18,
+    maxBmi: 25,
+    /** "BMI 18–25": a BMI of exactly 25 still qualifies. */
+    maxBmiInclusive: true,
     requireNonSmoker: true,
     requireRegularCycles: true,
-    minEducation: "High school",
+    minEducation: "Currently in college",
   },
   sperm: {
-    minAge: 19,
-    maxAge: 38,
-    maxBmi: 30,
-    // TODO: 待 MeQilin 确认 — height and "currently in college" requirements.
+    minAge: 20,
+    maxAge: 34,
+    minBmi: 0,
+    maxBmi: 27,
+    /** "BMI under 27": 27 itself does not qualify. */
+    maxBmiInclusive: false,
     minHeightInches: 68,
     requireNonSmoker: true,
-    // TODO: 待 MeQilin 确认
     minEducation: "Currently in college",
   },
 } as const;
@@ -52,10 +67,10 @@ export function requirementsList(type: DonorType): string[] {
     const r = ELIGIBILITY.egg;
     return [
       `Age ${r.minAge}–${r.maxAge}`,
-      `BMI under ${r.maxBmi}`,
+      `BMI ${r.minBmi}–${r.maxBmi}`,
       ...(r.requireNonSmoker ? ["Non-smoker (including vaping and nicotine products)"] : []),
       ...(r.requireRegularCycles ? ["Regular menstrual cycles"] : []),
-      `${r.minEducation} diploma or higher`,
+      "Currently enrolled in college, or a college graduate",
       "Able to commit to about 3–6 weeks of screening appointments and medication",
     ];
   }
@@ -64,8 +79,8 @@ export function requirementsList(type: DonorType): string[] {
     `Age ${r.minAge}–${r.maxAge}`,
     `Height ${inchesToFeet(r.minHeightInches)} or taller`,
     `BMI under ${r.maxBmi}`,
-    `${r.minEducation === "Currently in college" ? "Currently enrolled in college" : r.minEducation} or higher education`,
+    "In college or a college graduate",
     ...(r.requireNonSmoker ? ["Non-smoker (including vaping and nicotine products)"] : []),
-    "Willing to complete medical screening at a partner clinic once matched",
+    "Healthy, with no serious hereditary conditions in your family",
   ];
 }

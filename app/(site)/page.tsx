@@ -44,22 +44,22 @@ const SAMPLER: { icon: SamplerIcon; title: string; body: string }[] = [
   {
     icon: "coordinator",
     title: "Someone who knows your name",
-    body: "Your own coordinator stays with you from the first form to the final day — call or text whenever a question comes up.",
+    body: "Your own coordinator stays with you from your first form to your final appointment. Message or email us whenever a question comes up.",
   },
   {
     icon: "compensation",
-    title: "Amounts you can see",
-    body: "Compensation is set out plainly before you begin, and it rewards your time — never your looks, background or other personal traits.",
+    title: "Know your number from the start",
+    body: "Your compensation is agreed in writing before you begin and paid once your donation is complete. It's for your time and commitment, never your looks, background or other personal traits.",
   },
   {
     icon: "privacy",
-    title: "Kept close",
-    body: "What you share is encrypted, never sold, and passed only to the partner clinics involved in your care.",
+    title: "Your story stays yours",
+    body: "Everything you share is encrypted, never sold, and shared only with the partner clinics involved in your care.",
   },
   {
     icon: "worldwide",
     title: "Wherever you live",
-    body: `${SITE.serviceArea}, with any program travel arranged and paid for.`,
+    body: "We work with donors across the U.S. and internationally. If your program requires travel, we arrange and pay for it.",
   },
 ];
 
@@ -68,6 +68,17 @@ const PERKS = [
   "Genetic testing at no charge",
   "Appointments around your life",
 ];
+
+/** Smaller lines under a compensation amount (tiers / note). */
+function CompDetails({ lines }: { lines: readonly string[] }) {
+  return (
+    <ul className="text-muted mt-4 space-y-1 font-sans text-base leading-relaxed font-semibold">
+      {lines.map((l) => (
+        <li key={l}>{l}</li>
+      ))}
+    </ul>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -108,7 +119,7 @@ export default function HomePage() {
           <header className="mx-auto mt-6 max-w-2xl text-center">
             <p className="thread-label text-accent">Why donors choose us</p>
             <h2 className="mt-3 text-[2rem] leading-[1.15] md:text-[2.75rem]">
-              Our promise, <Em>stitch by stitch</Em>
+              Our promise <Em>to you</Em>
             </h2>
           </header>
           <ul className="mt-10 grid gap-x-12 gap-y-10 sm:grid-cols-2 md:mt-12">
@@ -143,9 +154,11 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-4xl gap-8 md:grid-cols-2 md:gap-10">
           <FabricLabel who="Egg donors" href="/egg-donor" tone="sage" className="md:-rotate-1">
             {SITE.eggComp}
+            <CompDetails lines={SITE.eggCompTiers} />
           </FabricLabel>
           <FabricLabel who="Sperm donors" href="/sperm-donor" tone="thread" className="md:rotate-1">
             {spermComp}
+            <CompDetails lines={[SITE.spermCompNote]} />
           </FabricLabel>
         </div>
         <p className="text-muted mx-auto mt-8 max-w-2xl text-center text-sm">

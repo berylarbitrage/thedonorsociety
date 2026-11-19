@@ -569,11 +569,28 @@ export function sectionSchema(id: FormSectionId, donorType: DonorType, strict: b
   });
 }
 
+/** 3–5 photos: uploaded in the pre-screen, managed later in the portal. */
 export const PHOTO_LIMITS = {
-  maxCount: 6,
+  minCount: 3,
+  maxCount: 5,
   maxBytes: 5 * 1024 * 1024,
   mimeTypes: ["image/jpeg", "image/png"] as const,
 };
+
+/** One optional self-introduction video (stored in `photos` with kind = "video"). */
+export const VIDEO_LIMITS = {
+  maxBytes: 50 * 1024 * 1024,
+  mimeTypes: ["video/mp4", "video/quicktime", "video/webm"] as const,
+};
+
+/** File extension used in storage for an allowed photo/video type. */
+export function mediaExt(contentType: string): string {
+  return (
+    { "image/png": "png", "video/mp4": "mp4", "video/quicktime": "mov", "video/webm": "webm" }[
+      contentType
+    ] ?? "jpg"
+  );
+}
 
 export function completionPercent(completed: readonly string[]): number {
   const done = ALL_SECTION_IDS.filter((s) => completed.includes(s)).length;

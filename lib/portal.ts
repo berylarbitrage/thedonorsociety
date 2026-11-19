@@ -1,6 +1,6 @@
 import "server-only";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { FORM_SECTION_IDS } from "@/lib/full-app";
+import { FORM_SECTION_IDS, PHOTO_LIMITS } from "@/lib/full-app";
 
 export interface OwnApplication {
   id: string;
@@ -46,8 +46,9 @@ export async function getFullApp(supabase: SupabaseClient, applicationId: string
   return (data as FullAppRow | null) ?? null;
 }
 
+/** Photos are done once there are at least 3 (a childhood photo is welcome, not required). */
 export function photosComplete(kinds: string[]): boolean {
-  return kinds.includes("childhood") && kinds.includes("recent");
+  return kinds.filter((k) => k !== "video").length >= PHOTO_LIMITS.minCount;
 }
 
 export function formSectionsComplete(completed: string[]): boolean {
