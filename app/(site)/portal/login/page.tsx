@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LoginForm } from "@/components/forms/login-form";
+import { PasswordLoginForm } from "@/components/forms/password-login-form";
 import { safeNext } from "@/lib/auth-links";
 
 export const metadata: Metadata = { title: "Sign In", robots: { index: false, follow: false } };
@@ -16,14 +17,18 @@ export default async function LoginPage({
     <div className="mx-auto max-w-md px-4 py-16">
       <h1 className="text-4xl">Sign in</h1>
       <p className="text-muted mt-2 mb-6">
-        No password needed — we&apos;ll email you a secure link. Sign-in is available to applicants
-        who have pre-qualified.
+        Sign in with your email and password, or get a one-time link by email. Sign-in is available
+        to applicants who have pre-qualified.
       </p>
       {sp.error === "link" && (
         <p role="alert" className="bg-accent-soft mb-4 rounded-lg p-3 text-sm">
           That sign-in link is invalid or has expired. Please request a new one.
         </p>
       )}
+      <PasswordLoginForm next={next} area="portal" />
+      <p className="text-muted my-5 text-center text-xs tracking-widest uppercase">
+        or get a sign-in link by email
+      </p>
       <LoginForm next={next} />
       <p className="text-muted mt-6 text-sm">
         Haven&apos;t applied yet?{" "}
