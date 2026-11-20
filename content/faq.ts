@@ -21,7 +21,7 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
       },
       {
         q: "What happens once I've sent the pre-screen?",
-        a: "Your initial result appears straight away. If you pre-qualify, you can carry on into the full application right then. Every step saves as you go, and we also email you a link so you can pick it up again whenever suits you. After that, a coordinator will be in touch.",
+        a: "Our team reads every pre-screen personally, usually within a few business days. If it's a good fit, we'll email you a link to create your password and carry on into the full application. Every step saves as you go, so you can pick it up again whenever suits you. After that, a coordinator will be in touch.",
       },
       {
         q: "What exactly does The Donor Society do?",

@@ -12,7 +12,10 @@ export function Logo({ className }: { className?: string }) {
       aria-label={`${SITE.brand} home`}
     >
       <LogoMark className="size-11 shrink-0 transition-transform duration-300 group-hover:-rotate-6" />
-      <span className="font-script text-thread border-sage border-b-2 border-dashed pb-3 text-[1.5rem] leading-none whitespace-nowrap">
+      <span
+        className="notranslate font-script text-thread border-sage border-b-2 border-dashed pb-3 text-[1.5rem] leading-none whitespace-nowrap"
+        translate="no"
+      >
         {SITE.brand}
       </span>
     </Link>

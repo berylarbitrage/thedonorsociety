@@ -33,8 +33,8 @@ export default async function ApplyPage({ params }: { params: Promise<{ type: st
           A few questions, <Em>gently asked</Em>
         </h1>
         <p className="text-muted mx-auto mt-4 max-w-lg text-lg">
-          About 3 minutes to see whether you pre-qualify. Take your time — there are no wrong
-          answers here.
+          About 3 minutes. Our team reads every application personally. Take your time — there are
+          no wrong answers here.
         </p>
       </header>
       <PrescreenForm type={type} turnstileSiteKey={turnstileSiteKey()} />
