@@ -57,8 +57,8 @@ export function FullApplication({
   const def = FORM_SECTIONS.find((s) => s.id === active);
 
   return (
-    <div className="grid gap-8 md:grid-cols-[16rem_1fr]">
-      <aside>
+    <div className="flex flex-col gap-8 md:grid md:grid-cols-[16rem_minmax(0,1fr)]">
+      <aside className="min-w-0">
         <div className="mb-4">
           <div className="mb-1 flex justify-between text-sm">
             <span className="font-medium">Progress</span>
@@ -117,7 +117,7 @@ export function FullApplication({
       </aside>
 
       <section
-        className="fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10"
+        className="min-w-0 fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10"
         aria-labelledby="section-heading"
       >
         <h2 id="section-heading" tabIndex={-1} className="text-2xl outline-none">
