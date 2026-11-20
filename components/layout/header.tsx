@@ -8,6 +8,7 @@ import { Logo } from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
 import { NAV_LINKS } from "@/config/site";
 import { ApplyMenu } from "@/components/layout/apply-menu";
+import { LanguageMenu } from "@/components/layout/language";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -38,6 +39,7 @@ export function Header() {
           </ul>
         </nav>
         <div className="flex items-center justify-end gap-2">
+          <LanguageMenu className="hidden md:flex" />
           <ApplyMenu className="hidden sm:block" />
           <Button
             variant="ghost"
@@ -72,6 +74,7 @@ export function Header() {
               </li>
             ))}
           </ul>
+          <LanguageMenu className="mt-4" id="language-mobile" />
           <div className="mt-5 grid grid-cols-2 gap-2">
             <Button asChild className="px-2">
               <Link href="/apply/egg" onClick={() => setOpen(false)}>
