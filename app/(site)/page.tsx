@@ -30,7 +30,7 @@ const STEPS = [
   },
   {
     word: "Three",
-    title: "Meet your family",
+    title: "Get matched",
     body: "Intended parents choose you; screening then takes place at a partner clinic.",
   },
   {
