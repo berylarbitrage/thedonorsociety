@@ -117,7 +117,7 @@ export function FullApplication({
       </aside>
 
       <section
-        className="fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10"
+        className="min-w-0 fabric-card stitched p-6 [--stitch:var(--sage-deep)] sm:p-10"
         aria-labelledby="section-heading"
       >
         <h2 id="section-heading" tabIndex={-1} className="text-2xl outline-none">
