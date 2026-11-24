@@ -23,6 +23,7 @@
   --field: #8c7a70; /* form-control borders, 3:1 on fabric */
   --ring: #a83a4d;
   --destructive: #a1271b;
+  --destructive-soft: #fef3f2; /* error box background (solid: older phone browsers lack color-mix) */
   --primary-soft: #f8e3e3;
   --accent-soft: #fbefd2;
   --thread: #c0485b;
@@ -52,6 +53,7 @@
   --border: #4d3d3a;
   --ring: #f1a7b3;
   --destructive: #f97066;
+  --destructive-soft: #3a1714; /* error box background (solid: older phone browsers lack color-mix) */
   --primary-soft: #4a2c31;
   --accent-soft: #3f3527;
 }
@@ -70,6 +72,7 @@
   --color-field: var(--field);
   --color-ring: var(--ring);
   --color-destructive: var(--destructive);
+  --color-destructive-soft: var(--destructive-soft);
   --color-primary-soft: var(--primary-soft);
   --color-accent-soft: var(--accent-soft);
   --color-thread: var(--thread);
