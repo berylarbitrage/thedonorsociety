@@ -5,9 +5,9 @@ import { normalizeUrl } from "@/lib/url";
  * Replace these values before launch — every page reads from here.
  */
 export const SITE = {
-  brand: "The Donor Society", // {{BRAND}}
-  domain: "thedonorsociety.com", // {{DOMAIN}}
-  contactEmail: "info@thedonorsociety.com", // {{CONTACT_EMAIL}} — TODO: confirm
+  brand: "Common Thread Donors", // {{BRAND}}
+  domain: "commonthreaddonors.com", // {{DOMAIN}}
+  contactEmail: "info@commonthreaddonors.com", // {{CONTACT_EMAIL}}
   eggComp: "$8,000 – $35,000+ per cycle", // {{EGG_COMP}}
   /** Breakdown shown under the egg amount (home page label + egg landing page). */
   eggCompTiers: [

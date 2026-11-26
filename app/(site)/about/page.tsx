@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { PARTNER_CLINICS_LINE, SITE } from "@/config/site";
 
 export const metadata: Metadata = {
-  title: "About The Donor Society",
+  title: `About ${SITE.brand}`,
   description: `Who we are at ${SITE.brand}, what we believe, and how we care for egg and sperm donors.`,
   alternates: { canonical: "/about" },
 };

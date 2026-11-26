@@ -24,7 +24,7 @@ export const FAQ: Record<FaqGroup, { title: string; items: FaqItem[] }> = {
         a: "Our team reads every pre-screen personally, usually within a few business days. If it's a good fit, we'll email you a link to create your password and carry on into the full application. Every step saves as you go, so you can pick it up again whenever suits you. After that, a coordinator will be in touch.",
       },
       {
-        q: "What exactly does The Donor Society do?",
+        q: `What exactly does ${SITE.brand} do?`,
         a: `We find and pre-screen egg and sperm donors, walk alongside them through the application, and match them with intended-parent families. Medical screening, testing, procedures and sample handling are ${PARTNER_CLINICS_LINE}.`,
       },
       {

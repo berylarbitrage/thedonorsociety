@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("server-only", () => ({}));
 const { emailFrom, emailFromDomain, labelSubject } = await import("@/lib/email");
+const { SITE } = await import("@/config/site");
 
 afterEach(() => {
   delete process.env.EMAIL_FROM;
@@ -13,14 +14,14 @@ afterEach(() => {
 
 describe("sender address", () => {
   it("adds the brand as display name to a bare address", () => {
-    process.env.EMAIL_FROM = "hello@thedonorsociety.com";
-    expect(emailFrom()).toBe("The Donor Society <hello@thedonorsociety.com>");
-    expect(emailFromDomain()).toBe("thedonorsociety.com");
+    process.env.EMAIL_FROM = "hello@commonthreaddonors.com";
+    expect(emailFrom()).toBe(`${SITE.brand} <hello@commonthreaddonors.com>`);
+    expect(emailFromDomain()).toBe("commonthreaddonors.com");
   });
   it("uses the brand as display name (only the address comes from EMAIL_FROM)", () => {
-    process.env.EMAIL_FROM = "Preview <team@mail.thedonorsociety.com>";
-    expect(emailFrom()).toBe("The Donor Society <team@mail.thedonorsociety.com>");
-    expect(emailFromDomain()).toBe("mail.thedonorsociety.com");
+    process.env.EMAIL_FROM = "Preview <team@mail.commonthreaddonors.com>";
+    expect(emailFrom()).toBe(`${SITE.brand} <team@mail.commonthreaddonors.com>`);
+    expect(emailFromDomain()).toBe("mail.commonthreaddonors.com");
   });
   it("marks emails from the preview site with PREVIEW (sender and subject)", () => {
     process.env.EMAIL_FROM = "hello@example.com";

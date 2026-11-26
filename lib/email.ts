@@ -90,7 +90,7 @@ export function emailFrom(): string {
   return `${SITE.brand}${label ? ` ${label}` : ""} <${address || "onboarding@resend.dev"}>`;
 }
 
-/** Domain part of the configured sender, e.g. "thedonorsociety.com". */
+/** Domain part of the configured sender, e.g. "commonthreaddonors.com". */
 export function emailFromDomain(): string | null {
   const m = /@([^>\s]+)>?\s*$/.exec(emailFrom());
   return m ? m[1]!.toLowerCase() : null;

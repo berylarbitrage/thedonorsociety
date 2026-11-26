@@ -1,5 +1,5 @@
 /**
- * The Donor Society mark ("egg in the hoop"): a wooden embroidery hoop with
+ * Common Thread Donors mark ("egg in the hoop"): a wooden embroidery hoop with
  * its brass screw at the top, holding a mustard egg inside a dotted red
  * stitched ring, and a red sperm whose tail is a running stitch entering from
  * the top-left. Pure inline SVG, original artwork.
